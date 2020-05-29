@@ -19,7 +19,7 @@ class CreateBillsTable extends Migration
             $table->string('name');
             $table->text('description');
             $table->integer('amount');
-            $table->tinyInteger('per_month');
+            $table->boolean('per_month');
             $table->timestamps();
 
             $table->foreign('lodging_id')->references('id')->on('lodgings')->onDelete('cascade');
