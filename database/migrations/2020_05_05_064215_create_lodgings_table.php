@@ -15,14 +15,11 @@ class CreateLodgingsTable extends Migration
     {
         Schema::create('lodgings', function (Blueprint $table) {
              $table->id();
-            $table->unsignedBigInteger('renter_id');
-            $table->unsignedBigInteger('room_id');
+            $table->foreignId('renter_id')->constrained()->onDelete('cascade');
+            $table->foreignId('room_id')->constrained()->onDelete('cascade');
             $table->date('start_at');
             $table->date('end_at');
             $table->timestamps();
-
-            $table->foreign('renter_id')->references('id')->on('renters')->onDelete('cascade');
-            $table->foreign('room_id')->references('id')->on('rooms')->onDelete('cascade');
         });
     }
 
