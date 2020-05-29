@@ -15,14 +15,12 @@ class CreateBillsTable extends Migration
     {
         Schema::create('bills', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('lodging_id');
+            $table->foreignId('lodging_id')->constrained()->onDelete('cascade');
             $table->string('name');
             $table->text('description');
             $table->integer('amount');
             $table->boolean('per_month');
             $table->timestamps();
-
-            $table->foreign('lodging_id')->references('id')->on('lodgings')->onDelete('cascade');
         });
     }
 
