@@ -17,7 +17,7 @@ const tailwindcss = require('tailwindcss');
  */
 
 mix
-  .react('resources/js/app.js', 'public/js')
+  .react('resources/js/app.jsx', 'public/js')
   .postCss('resources/css/app.css', 'public/css/app.css')
   .options({
     postCss: [
@@ -29,7 +29,7 @@ mix
             purgecss({
               content: [
                 './resources/views/**/*.blade.php',
-                './resources/js/**/*.js'
+                './resources/js/**/*.jsx'
               ],
               defaultExtractor: content =>
                 content.match(/[\w-/:.]+(?<!:)/g) || [],
