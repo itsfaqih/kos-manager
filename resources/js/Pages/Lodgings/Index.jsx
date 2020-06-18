@@ -13,8 +13,8 @@ const Organizations = () => {
     <div>
       <Helmet title="Organizations" />
       <div>
-        <h1 className="mb-8 text-3xl font-bold">Organizations</h1>
-        <div className="flex items-center justify-between mb-6">
+        <h1 className="mb-8 font-bold text-3xl">Organizations</h1>
+        <div className="mb-6 flex justify-between items-center">
           <SearchFilter />
           <InertiaLink
             className="btn-indigo"
@@ -24,10 +24,10 @@ const Organizations = () => {
             <span className="hidden md:inline"> Organization</span>
           </InertiaLink>
         </div>
-        <div className="overflow-x-auto bg-white rounded shadow">
+        <div className="bg-white rounded shadow overflow-x-auto">
           <table className="w-full whitespace-no-wrap">
             <thead>
-              <tr className="font-bold text-left">
+              <tr className="text-left font-bold">
                 <th className="px-6 pt-5 pb-4">Name</th>
                 <th className="px-6 pt-5 pb-4">City</th>
                 <th className="px-6 pt-5 pb-4" colSpan="2">
@@ -45,13 +45,13 @@ const Organizations = () => {
                     <td className="border-t">
                       <InertiaLink
                         href={route('organizations.edit', id)}
-                        className="flex items-center px-6 py-4 focus:text-indigo-700"
+                        className="px-6 py-4 flex items-center focus:text-indigo-700"
                       >
                         {name}
                         {deleted_at && (
                           <Icon
                             name="trash"
-                            className="flex-shrink-0 w-3 h-3 ml-2 text-gray-400 fill-current"
+                            className="flex-shrink-0 w-3 h-3 text-gray-400 fill-current ml-2"
                           />
                         )}
                       </InertiaLink>
@@ -60,7 +60,7 @@ const Organizations = () => {
                       <InertiaLink
                         tabIndex="-1"
                         href={route('organizations.edit', id)}
-                        className="flex items-center px-6 py-4 focus:text-indigo"
+                        className="px-6 py-4 flex items-center focus:text-indigo"
                       >
                         {city}
                       </InertiaLink>
@@ -69,16 +69,16 @@ const Organizations = () => {
                       <InertiaLink
                         tabIndex="-1"
                         href={route('organizations.edit', id)}
-                        className="flex items-center px-6 py-4 focus:text-indigo"
+                        className="px-6 py-4 flex items-center focus:text-indigo"
                       >
                         {phone}
                       </InertiaLink>
                     </td>
-                    <td className="w-px border-t">
+                    <td className="border-t w-px">
                       <InertiaLink
                         tabIndex="-1"
                         href={route('organizations.edit', id)}
-                        className="flex items-center px-4"
+                        className="px-4 flex items-center"
                       >
                         <Icon
                           name="cheveron-right"
@@ -91,7 +91,7 @@ const Organizations = () => {
               })}
               {data.length === 0 && (
                 <tr>
-                  <td className="px-6 py-4 border-t" colSpan="4">
+                  <td className="border-t px-6 py-4" colSpan="4">
                     No organizations found.
                   </td>
                 </tr>
