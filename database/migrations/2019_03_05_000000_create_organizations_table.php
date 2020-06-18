@@ -9,8 +9,8 @@ class CreateOrganizationsTable extends Migration
     public function up()
     {
         Schema::create('organizations', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('account_id')->index();
+            $table->id();
+            $table->foreignId('account_id');
             $table->string('name', 100);
             $table->string('email', 50)->nullable();
             $table->string('phone', 50)->nullable();
@@ -22,5 +22,15 @@ class CreateOrganizationsTable extends Migration
             $table->timestamps();
             $table->softDeletes();
         });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists('organizations');
     }
 }

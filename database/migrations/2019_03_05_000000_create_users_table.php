@@ -9,8 +9,8 @@ class CreateUsersTable extends Migration
     public function up()
     {
         Schema::create('users', function (Blueprint $table) {
-            $table->increments('id');
-            $table->integer('account_id')->index();
+            $table->id();
+            $table->foreignId('account_id')->constrained()->onDelete('cascade');
             $table->string('first_name', 25);
             $table->string('last_name', 25);
             $table->string('email', 50)->unique();
@@ -21,5 +21,15 @@ class CreateUsersTable extends Migration
             $table->timestamps();
             $table->softDeletes();
         });
+    }
+
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::dropIfExists('users');
     }
 }
