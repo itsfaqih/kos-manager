@@ -19,14 +19,21 @@ Route::post('logout')->name('logout')->uses('Auth\LoginController@logout');
 // Dashboard
 Route::get('/')->name('dashboard')->uses('DashboardController')->middleware('auth');
 
-// Users
-Route::get('users')->name('users')->uses('UsersController@index')->middleware('remember', 'auth');
-Route::get('users/create')->name('users.create')->uses('UsersController@create')->middleware('auth');
-Route::post('users')->name('users.store')->uses('UsersController@store')->middleware('auth');
-Route::get('users/{user}/edit')->name('users.edit')->uses('UsersController@edit')->middleware('auth');
-Route::put('users/{user}')->name('users.update')->uses('UsersController@update')->middleware('auth');
-Route::delete('users/{user}')->name('users.destroy')->uses('UsersController@destroy')->middleware('auth');
-Route::put('users/{user}/restore')->name('users.restore')->uses('UsersController@restore')->middleware('auth');
+Route::middleware('auth')->group(function() {
+    // Users
+    Route::prefix('users')->name('users.')->group(function () {
+        Route::get('/', 'UsersController@index')->name('index')->middleware('remember');
+        Route::get('create', 'UsersController@create')->name('create');
+        Route::post('/', 'UsersController@store')->name('store');
+        Route::get('{user}/edit', 'UsersController@edit')->name('edit');
+        Route::put('{user}', 'UsersController@update')->name('update');
+        Route::delete('{user}', 'UsersController@destroy')->name('destroy');
+        Route::put('{user}/restore', 'UsersController@restore')->name('restore');
+    });
+
+
+});
+
 
 // Images
 Route::get('/img/{path}', 'ImagesController@show')->where('path', '.*');
