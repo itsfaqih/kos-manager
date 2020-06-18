@@ -31,7 +31,15 @@ Route::middleware('auth')->group(function() {
         Route::put('{user}/restore', 'UsersController@restore')->name('restore');
     });
 
-
+    Route::prefix('lodgings')->name('lodgings.')->group(function () {
+        Route::get('/', 'LodgingsController@index')->name('index')->middleware('remember');
+        Route::get('create', 'LodgingsController@create')->name('create');
+        Route::post('/', 'LodgingsController@store')->name('store');
+        Route::get('{lodging}/edit', 'LodgingsController@edit')->name('edit');
+        Route::put('{lodging}', 'LodgingsController@update')->name('update');
+        Route::delete('{lodging}', 'LodgingsController@destroy')->name('destroy');
+        Route::put('{lodging}/restore', 'LodgingsController@restore')->name('restore');
+    });
 });
 
 
