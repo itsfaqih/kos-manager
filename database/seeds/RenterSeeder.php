@@ -13,7 +13,7 @@ class RenterSeeder extends Seeder
      */
     public function run()
     {
-        $renters = factory(Renter::class, 100)
+        $renters = factory(Renter::class, 50)
             ->create(); 
     }
 }

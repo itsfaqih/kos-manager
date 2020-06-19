@@ -41,13 +41,13 @@ export default () => {
   }
 
   function destroy() {
-    if (confirm('Are you sure you want to delete this renter?')) {
+    if (confirm('Apa anda yakin ingin menghapus penyewa ini?')) {
       Inertia.delete(route('renters.destroy', renter.id));
     }
   }
 
   function restore() {
-    if (confirm('Are you sure you want to restore this renter?')) {
+    if (confirm('Apa anda yakin ingin memulihkan penyewa ini?')) {
       Inertia.put(route('renters.restore', renter.id));
     }
   }
@@ -61,14 +61,14 @@ export default () => {
             href={route('renters.index')}
             className="text-indigo-600 hover:text-indigo-700"
           >
-            Renters
+            Penyewa
           </InertiaLink>
           <span className="mx-2 font-medium text-indigo-600">/</span>
           {values.name}
         </h1>
          {renter.deleted_at && (
            <TrashedMessage onRestore={restore}>
-             This renter has been deleted.
+             Penyewa telah dihapus.
            </TrashedMessage>
         )}
         <div className="max-w-3xl overflow-hidden bg-white rounded shadow">
@@ -76,7 +76,7 @@ export default () => {
           <div className="flex flex-wrap p-8 -mb-8 -mr-6">
             <TextInput
                 className="w-full pb-8 pr-6 lg:w-1/2"
-                label="nik"
+                label="NIK"
                 name="nik"
                 errors={errors.nik}
                 value={values.nik}
@@ -84,7 +84,7 @@ export default () => {
               />
               <TextInput
                 className="w-full pb-8 pr-6 lg:w-1/2"
-                label="name"
+                label="Nama"
                 name="name"
                 errors={errors.name}
                 value={values.name}
@@ -92,7 +92,7 @@ export default () => {
               />
               <SelectInput
                 className="w-full pb-8 pr-6 lg:w-1/2"
-                label="gender"
+                label="Jenis Kelamin"
                 name="gender"
                 errors={errors.gender}
                 value={values.gender}
@@ -104,7 +104,7 @@ export default () => {
               </SelectInput>
               <TextInput
                 className="w-full pb-8 pr-6 lg:w-1/2"
-                label="phone_number"
+                label="No Telepon"
                 name="phone_number"
                 type="text"
                 errors={errors.phone_number}
@@ -113,7 +113,7 @@ export default () => {
               />
               <TextInput
                 className="w-full pb-8 pr-6 lg:w-1/2"
-                label="Address"
+                label="Alamat"
                 name="address"
                 type="text"
                 errors={errors.address}
@@ -124,7 +124,7 @@ export default () => {
             <div className="flex items-center px-8 py-4 bg-gray-100 border-t border-gray-200">
               {!renter.deleted_at && (
                 <DeleteButton onDelete={destroy}>
-                  Delete Renter
+                  Hapus Penyewa
                 </DeleteButton>
               )}
               <LoadingButton
@@ -132,7 +132,7 @@ export default () => {
                 type="submit"
                 className="ml-auto btn-indigo"
               >
-                Update Renter
+                Perbarui Penyewa
               </LoadingButton>
             </div>
           </form>
