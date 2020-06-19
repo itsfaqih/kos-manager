@@ -12,6 +12,7 @@
   "dependencies": {
     "@babel/preset-react": "^7.10.0",
     "@fullhuman/postcss-purgecss": "^1.3.0",
+    "@graywolfai/react-heroicons": "^1.0.0",
     "@inertiajs/inertia": "^0.1.9",
     "@inertiajs/inertia-react": "^0.1.6",
     "@sentry/browser": "^5.15.5",

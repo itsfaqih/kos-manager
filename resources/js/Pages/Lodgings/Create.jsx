@@ -8,12 +8,11 @@ import TextInput from '@/Shared/TextInput';
 import SelectInput from '@/Shared/SelectInput';
 
 export default () => {
-  const { organizations, errors } = usePage();
+  const { errors } = usePage();
   const [sending, setSending] = useState(false);
+
   const [values, setValues] = useState({
-    first_name: '',
-    last_name: '',
-    organization_id: '',
+    name: '',
     email: '',
     phone: '',
     address: '',
@@ -35,62 +34,37 @@ export default () => {
   function handleSubmit(e) {
     e.preventDefault();
     setSending(true);
-    Inertia.post(route('contacts.store'), values).then(() => {
+    Inertia.post(route('organizations.store'), values).then(() => {
       setSending(false);
     });
   }
 
   return (
     <Layout>
+      <Helmet title="Create Organization" />
       <div>
-        <Helmet title="Create Contact" />
-        <h1 className="mb-8 text-3xl font-bold">
+        <h1 className="mb-8 font-bold text-3xl">
           <InertiaLink
-            href={route('contacts')}
+            href={route('organizations')}
             className="text-indigo-600 hover:text-indigo-700"
           >
-            Contacts
+            Organizations
           </InertiaLink>
-          <span className="font-medium text-indigo-600"> /</span> Create
+          <span className="text-indigo-600 font-medium"> /</span> Create
         </h1>
-        <div className="max-w-3xl overflow-hidden bg-white rounded shadow">
+        <div className="bg-white rounded shadow overflow-hidden max-w-3xl">
           <form onSubmit={handleSubmit}>
-            <div className="flex flex-wrap p-8 -mb-8 -mr-6">
+            <div className="p-8 -mr-6 -mb-8 flex flex-wrap">
               <TextInput
-                className="w-full pb-8 pr-6 lg:w-1/2"
-                label="First Name"
-                name="first_name"
-                errors={errors.first_name}
-                value={values.first_name}
+                className="pr-6 pb-8 w-full lg:w-1/2"
+                label="Name"
+                name="name"
+                errors={errors.name}
+                value={values.name}
                 onChange={handleChange}
               />
               <TextInput
-                className="w-full pb-8 pr-6 lg:w-1/2"
-                label="Last Name"
-                name="last_name"
-                errors={errors.last_name}
-                value={values.last_name}
-                onChange={handleChange}
-              />
-              <SelectInput
-                className="w-full pb-8 pr-6 lg:w-1/2"
-                label="Organization"
-                name="organization_id"
-                errors={errors.organization_id}
-                value={values.organization_id}
-                onChange={handleChange}
-              >
-                <option value=""></option>
-                {organizations.map(({ id, name }) => (
-                  <option key={id} value={id}>
-                    {name}
-                  </option>
-                ))}
-                <option value="CA">Canada</option>
-                <option value="US">United States</option>
-              </SelectInput>
-              <TextInput
-                className="w-full pb-8 pr-6 lg:w-1/2"
+                className="pr-6 pb-8 w-full lg:w-1/2"
                 label="Email"
                 name="email"
                 type="email"
@@ -99,7 +73,7 @@ export default () => {
                 onChange={handleChange}
               />
               <TextInput
-                className="w-full pb-8 pr-6 lg:w-1/2"
+                className="pr-6 pb-8 w-full lg:w-1/2"
                 label="Phone"
                 name="phone"
                 type="text"
@@ -108,7 +82,7 @@ export default () => {
                 onChange={handleChange}
               />
               <TextInput
-                className="w-full pb-8 pr-6 lg:w-1/2"
+                className="pr-6 pb-8 w-full lg:w-1/2"
                 label="Address"
                 name="address"
                 type="text"
@@ -117,7 +91,7 @@ export default () => {
                 onChange={handleChange}
               />
               <TextInput
-                className="w-full pb-8 pr-6 lg:w-1/2"
+                className="pr-6 pb-8 w-full lg:w-1/2"
                 label="City"
                 name="city"
                 type="text"
@@ -126,7 +100,7 @@ export default () => {
                 onChange={handleChange}
               />
               <TextInput
-                className="w-full pb-8 pr-6 lg:w-1/2"
+                className="pr-6 pb-8 w-full lg:w-1/2"
                 label="Province/State"
                 name="region"
                 type="text"
@@ -135,7 +109,7 @@ export default () => {
                 onChange={handleChange}
               />
               <SelectInput
-                className="w-full pb-8 pr-6 lg:w-1/2"
+                className="pr-6 pb-8 w-full lg:w-1/2"
                 label="Country"
                 name="country"
                 errors={errors.country}
@@ -147,7 +121,7 @@ export default () => {
                 <option value="US">United States</option>
               </SelectInput>
               <TextInput
-                className="w-full pb-8 pr-6 lg:w-1/2"
+                className="pr-6 pb-8 w-full lg:w-1/2"
                 label="Postal Code"
                 name="postal_code"
                 type="text"
@@ -156,13 +130,13 @@ export default () => {
                 onChange={handleChange}
               />
             </div>
-            <div className="flex items-center justify-end px-8 py-4 bg-gray-100 border-t border-gray-200">
+            <div className="px-8 py-4 bg-gray-100 border-t border-gray-200 flex justify-end items-center">
               <LoadingButton
                 loading={sending}
                 type="submit"
                 className="btn-indigo"
               >
-                Create Contact
+                Create Organization
               </LoadingButton>
             </div>
           </form>
