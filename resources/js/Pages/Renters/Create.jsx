@@ -105,7 +105,7 @@ export default () => {
                 type="submit"
                 className="btn-indigo"
               >
-                Create Renter
+                Tambahkan Penyewa
               </LoadingButton>
             </div>
           </form>

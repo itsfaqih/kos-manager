@@ -13,15 +13,15 @@ const Renters = () => {
     <div>
       <Helmet title="Renters" />
       <div>
-        <h1 className="mb-8 text-3xl font-bold">Renters</h1>
+        <h1 className="mb-8 text-3xl font-bold">Penyewa</h1>
         <div className="flex items-center justify-between mb-6">
           <SearchFilter />
           <InertiaLink
             className="btn-indigo"
             href={route('renters.create')}
           >
-            <span>Create</span>
-            <span className="hidden md:inline"> Renter</span>
+            <span>Tambah</span>
+            <span className="hidden md:inline"> Penyewa</span>
           </InertiaLink>
         </div>
         <div className="overflow-x-auto bg-white rounded shadow">
@@ -30,8 +30,8 @@ const Renters = () => {
               <tr className="font-bold text-left">
                 <th className="px-6 pt-5 pb-4">NIK</th>
                 <th className="px-6 pt-5 pb-4">Nama</th>
-                <th className="px-6 pt-5 pb-4">Gender</th>
-                <th className="px-6 pt-5 pb-4">Phone</th>
+                <th className="px-6 pt-5 pb-4">Jenis Kelamin</th>
+                <th className="px-6 pt-5 pb-4">No Telepon</th>
               </tr>
             </thead>
             <tbody>
@@ -105,7 +105,7 @@ const Renters = () => {
               {data.length === 0 && (
                 <tr>
                   <td className="px-6 py-4 border-t" colSpan="4">
-                    No renters found.
+                    Penyewa tidak ditemukan.
                   </td>
                 </tr>
               )}

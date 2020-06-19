@@ -38,7 +38,7 @@ class RentersController extends Controller
             ])
         );
 
-        return Redirect::route('renters.index')->with('success', 'Renter created.');
+        return Redirect::route('renters.index')->with('success', 'Penyewa berhasil ditambahkan.');
     }
 
     public function edit(Renter $renter)
@@ -68,21 +68,21 @@ class RentersController extends Controller
             ])
         );
 
-        return Redirect::back()->with('success', 'Renter updated.');
+        return Redirect::back()->with('success', 'Penyewa berhasil diperbarui.');
     }
 
     public function destroy(Renter $renter)
     {
         $renter->delete();
 
-        return Redirect::back()->with('success', 'Renter deleted.');
+        return Redirect::back()->with('success', 'Penyewa berhasil dihapus.');
     }
 
     public function restore(Renter $renter)
     {
         $renter->restore();
 
-        return Redirect::back()->with('success', 'Renter restored.');
+        return Redirect::back()->with('success', 'Penyewa berhasil dikembalikan.');
     }
     
 }
