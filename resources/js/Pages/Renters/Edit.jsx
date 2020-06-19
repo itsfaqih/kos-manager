@@ -41,13 +41,13 @@ export default () => {
   }
 
   function destroy() {
-    if (confirm('Are you sure you want to delete this renter?')) {
+    if (confirm('Apa anda yakin ingin menghapus penyewa ini?')) {
       Inertia.delete(route('renters.destroy', renter.id));
     }
   }
 
   function restore() {
-    if (confirm('Are you sure you want to restore this renter?')) {
+    if (confirm('Apa anda yakin ingin memulihkan penyewa ini?')) {
       Inertia.put(route('renters.restore', renter.id));
     }
   }

@@ -45,9 +45,9 @@ export default () => {
             href={route('renters.index')}
             className="text-indigo-600 hover:text-indigo-700"
           >
-            Renters
+            Penyewa
           </InertiaLink>
-          <span className="font-medium text-indigo-600"> /</span> Create
+          <span className="font-medium text-indigo-600"> /</span> Buat
         </h1>
         <div className="max-w-3xl overflow-hidden bg-white rounded shadow">
           <form onSubmit={handleSubmit}>

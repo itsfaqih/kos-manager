@@ -82,7 +82,7 @@ class RentersController extends Controller
     {
         $renter->restore();
 
-        return Redirect::back()->with('success', 'Penyewa berhasil dikembalikan.');
+        return Redirect::back()->with('success', 'Penyewa berhasil dipulihkan.');
     }
     
 }
