@@ -58,7 +58,7 @@ export default () => {
       <div>
         <h1 className="mb-8 text-3xl font-bold">
           <InertiaLink
-            href={route('renters')}
+            href={route('renters.index')}
             className="text-indigo-600 hover:text-indigo-700"
           >
             Renters

@@ -38,7 +38,7 @@ class RentersController extends Controller
             ])
         );
 
-        return Redirect::route('renters')->with('success', 'Renter created.');
+        return Redirect::route('renters.index')->with('success', 'Renter created.');
     }
 
     public function edit(Renter $renter)
