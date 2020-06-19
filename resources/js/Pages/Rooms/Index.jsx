@@ -13,23 +13,23 @@ const Rooms = () => {
     <div>
       <Helmet title="Rooms" />
       <div>
-        <h1 className="mb-8 text-3xl font-bold">Rooms</h1>
+        <h1 className="mb-8 text-3xl font-bold">Kamar</h1>
         <div className="flex items-center justify-between mb-6">
           <SearchFilter />
           <InertiaLink className="btn-indigo" href={route('rooms.create')}>
-            <span>Create</span>
-            <span className="hidden md:inline"> Rooms</span>
+            <span>Buat</span>
+            <span className="hidden md:inline">Kamar</span>
           </InertiaLink>
         </div>
         <div className="overflow-x-auto bg-white rounded shadow">
           <table className="w-full whitespace-no-wrap">
             <thead>
               <tr className="font-bold text-left">
-                <th className="px-6 pt-5 pb-4">Number</th>
-                <th className="px-6 pt-5 pb-4">Length</th>
-                <th className="px-6 pt-5 pb-4">Width</th>
-                <th className="px-6 pt-5 pb-4">Facilities</th>
-                <th className="px-6 pt-5 pb-4">Cost Per Month</th>
+                <th className="px-6 pt-5 pb-4">Nomor Kamar</th>
+                <th className="px-6 pt-5 pb-4">Panjang</th>
+                <th className="px-6 pt-5 pb-4">Luas</th>
+                <th className="px-6 pt-5 pb-4">Fasilitas</th>
+                <th className="px-6 pt-5 pb-4">Biaya Per Bulan</th>
               </tr>
             </thead>
             <tbody>
@@ -77,7 +77,7 @@ const Rooms = () => {
               {data.length === 0 && (
                 <tr>
                   <td className="px-6 py-4 border-t" colSpan="4">
-                    No rooms found.
+                    Kamar tidak ditemukan.
                   </td>
                 </tr>
               )}

@@ -41,8 +41,8 @@ export default () => {
         <Helmet title = "Create Room" / >
         <div>
         <h1 className = "mb-8 text-3xl font-bold" >
-        <InertiaLink href = { route('rooms') } className = "text-indigo-600 hover:text-indigo-700" > Rooms </InertiaLink> 
-        <span className = "font-medium text-indigo-600" > /</span > Create </h1> 
+        <InertiaLink href = { route('rooms') } className = "text-indigo-600 hover:text-indigo-700" > Kamar </InertiaLink> 
+        <span className = "font-medium text-indigo-600" > /</span > Buat </h1> 
         <div className = "max-w-3xl overflow-hidden bg-white rounded shadow" >
         <form onSubmit = { handleSubmit } >
         <div className = "flex flex-wrap p-8 -mb-8 -mr-6" >
@@ -53,7 +53,7 @@ export default () => {
         <TextInput className = "w-full pb-8 pr-6 lg:w-1/2" label = "Cost Per Month" name = "cost_per_month" type = "text" errors = { errors.cost_per_month } value = { values.cost_per_month } onChange = { handleChange }/> 
         </div> 
         <div className = "flex items-center justify-end px-8 py-4 bg-gray-100 border-t border-gray-200" >
-        <LoadingButton loading = { sending } type = "submit" className = "btn-indigo">Create Rooms </LoadingButton> 
+        <LoadingButton loading = { sending } type = "submit" className = "btn-indigo">Buat Kamar </LoadingButton> 
         </div> 
         </form> 
         </div> 

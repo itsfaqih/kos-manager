@@ -38,7 +38,7 @@ class RoomsController extends Controller
             ])
         );
 
-        return Redirect::route('rooms')->with('success', 'Room created.');
+        return Redirect::route('rooms')->with('success', 'Kamar berhasil ditambahkan.');
     }
 
     public function edit(Room $room)
@@ -67,20 +67,20 @@ class RoomsController extends Controller
             ])
         );
 
-        return Redirect::back()->with('success', 'room updated.');
+        return Redirect::back()->with('success', 'Kamar berhasil diperbarui.');
     }
 
     public function destroy(Room $room)
     {
         $room->delete();
 
-        return Redirect::back()->with('success', 'Room deleted.');
+        return Redirect::back()->with('success', 'Kamar berhasil dihapus.');
     }
 
     public function restore(Room $room)
     {
         $room->restore();
 
-        return Redirect::back()->with('success', 'Room restored.');
+        return Redirect::back()->with('success', 'Kamar berhasil dipulihkan');
     }
 }

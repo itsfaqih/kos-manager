@@ -58,14 +58,14 @@ export default () => {
       <div>
         <h1 className="mb-8 text-3xl font-bold">
           <InertiaLink href={route('rooms')} className="text-indigo-600 hover:text-indigo-700">
-            Rooms
+            Kamar
           </InertiaLink>
           <span className="mx-2 font-medium text-indigo-600">/</span>
           {values.name}
         </h1>
         {room.deleted_at && (
           <TrashedMessage onRestore={restore}>
-            This room has been deleted.
+            Kamar ini telah dihapus.
           </TrashedMessage>
         )}
         <div className="max-w-3xl overflow-hidden bg-white rounded shadow">
@@ -80,11 +80,11 @@ export default () => {
             <div className="flex items-center px-8 py-4 bg-gray-100 border-t border-gray-200">
               {!room.deleted_at && (
                 <DeleteButton onDelete={destroy}>
-                  Delete room
+                  Hapus kamar
                 </DeleteButton>
               )}
               <LoadingButton loading={sending} type="submit" className="ml-auto btn-indigo">
-                Update room
+                Perbarui kamar
               </LoadingButton>
             </div>
           </form>
