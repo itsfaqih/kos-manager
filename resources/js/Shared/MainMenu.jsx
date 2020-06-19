@@ -5,7 +5,7 @@ export default ({ className }) => {
   return (
     <div className={className}>
       <MainMenuItem text="Dashboard" link="dashboard" icon="dashboard" />
-      <MainMenuItem text="Rooms" link="" icon="office" />
+      <MainMenuItem text="Rooms" link="rooms" icon="office" />
       <MainMenuItem text="Renters" link="" icon="office" />
       <MainMenuItem text="Bills" link="" icon="office" />
       <MainMenuItem text="Organizations" link="organizations" icon="office" />
