@@ -56,3 +56,12 @@ Route::get('reports')->name('reports')->uses('ReportsController')->middleware('a
 Route::get('500', function () {
     echo $fail;
 });
+
+//Renters
+Route::get('renters')->name('renters')->uses('RentersController@index')->middleware('remember', 'auth');
+Route::get('renters/create')->name('renters.create')->uses('RentersController@create')->middleware('auth');
+Route::post('renters')->name('renters.store')->uses('RentersController@store')->middleware('auth');
+Route::get('renters/{renter}/edit')->name('renters.edit')->uses('RentersController@edit')->middleware('auth');
+Route::put('renters/{renter}')->name('renters.update')->uses('RentersController@update')->middleware('auth');
+Route::delete('renters/{renter}')->name('renters.destroy')->uses('RentersController@destroy')->middleware('auth');
+Route::put('renters/{renter}/restore')->name('renters.restore')->uses('RentersController@restore')->middleware('auth');

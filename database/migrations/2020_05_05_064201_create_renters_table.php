@@ -20,6 +20,7 @@ class CreateRentersTable extends Migration
             $table->enum('gender', ['Laki-Laki', 'Perempuan']);
             $table->string('phone_number');
             $table->text('address');
+            $table->softDeletes();
             $table->timestamps();
 
         });
