@@ -31,16 +31,20 @@ Route::middleware('auth')->group(function() {
         Route::put('{user}/restore', 'UsersController@restore')->name('restore');
     });
 
+        //Rooms
+    Route::prefix('rooms')->name('rooms.')->group(function () {
+        Route::get('/', 'RoomsController@index')->name('index')->middleware('remember');
+        Route::get('create', 'RoomsController@create')->name('create');
+        Route::post('/', 'RoomsController@store')->name('store');
+        Route::get('{room}/edit', 'RoomsController@edit')->name('edit');
+        Route::put('{room}', 'RoomsController@update')->name('update');
+        Route::delete('{room}', 'RoomsController@destroy')->name('destroy');
+        Route::put('{room}/restore', 'RoomsController@restore')->name('restore');
+    });
     
 });
 
-// room
-Route::get('rooms')->name('rooms')->uses('RoomsController@index')->middleware('remember', 'auth');
-Route::get('rooms/create')->name('rooms.create')->uses('RoomsController@create')->middleware('auth');
-Route::post('rooms')->name('rooms.store')->uses('roomsController@store')->middleware('auth');
-Route::get('rooms/{room}/edit')->name('rooms.edit')->uses('roomsController@edit')->middleware('auth');
-Route::put('rooms/{room}')->name('rooms.update')->uses('roomsController@update')->middleware('auth');
-Route::delete('rooms/{room}/delete')->name('rooms.destroy')->uses('roomsController@destroy')->middleware('auth');
+
 
 // Images
 Route::get('/img/{path}', 'ImagesController@show')->where('path', '.*');
