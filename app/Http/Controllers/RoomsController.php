@@ -38,7 +38,7 @@ class RoomsController extends Controller
             ])
         );
 
-        return Redirect::route('rooms')->with('success', 'Kamar berhasil ditambahkan.');
+        return Redirect::route('rooms.index')->with('success', 'Kamar berhasil ditambahkan.');
     }
 
     public function edit(Room $room)

@@ -34,20 +34,19 @@ export default () => {
   function handleSubmit(e) {
     e.preventDefault();
     setSending(true);
-    Inertia.put(
-      route('rooms.update', room.id),
-      values
-    ).then(() => setSending(false));
+    Inertia.put(route('rooms.update', room.id), values).then(() =>
+      setSending(false)
+    );
   }
 
   function destroy() {
-    if (confirm('Are you sure you want to delete this room?')) {
+    if (confirm('Apa kamu yakin ingin menghapus kamar ini?')) {
       Inertia.delete(route('rooms.destroy', room.id));
     }
   }
 
   function restore() {
-    if (confirm('Are you sure you want to restore this room?')) {
+    if (confirm('Apa kamu yakin ingin memulihkan kamar ini?')) {
       Inertia.put(route('rooms.restore', room.id));
     }
   }
@@ -57,7 +56,10 @@ export default () => {
       <Helmet title={values.name} />
       <div>
         <h1 className="mb-8 text-3xl font-bold">
-          <InertiaLink href={route('rooms')} className="text-indigo-600 hover:text-indigo-700">
+          <InertiaLink
+            href={route('rooms.index')}
+            className="text-indigo-600 hover:text-indigo-700"
+          >
             Kamar
           </InertiaLink>
           <span className="mx-2 font-medium text-indigo-600">/</span>
@@ -71,19 +73,60 @@ export default () => {
         <div className="max-w-3xl overflow-hidden bg-white rounded shadow">
           <form onSubmit={handleSubmit}>
             <div className="flex flex-wrap p-8 -mb-8 -mr-6">
-              <TextInput className="w-full pb-8 pr-6 lg:w-1/2" label="Room" name="room" errors={errors.room} value={values.room} onChange={handleChange} />
-              <TextInput className="w-full pb-8 pr-6 lg:w-1/2" label="length" name="length" type="text" errors={errors.length} value={values.length} onChange={handleChange}/>
-              <TextInput className="w-full pb-8 pr-6 lg:w-1/2" label="width" name="width" type="width" errors={errors.width} value={values.width} onChange={handleChange}/>
-              <TextInput className="w-full pb-8 pr-6 lg:w-1/2" label="Facilities" name="facilities" type="text" errors={errors.facilities} value={values.facilities} onChange={handleChange} />
-              <TextInput className="w-full pb-8 pr-6 lg:w-1/2" label="Cost Per Month" name="cost_per_month" type="text" errors={errors.cost_per_month} value={values.cost_per_month} onChange={handleChange}/>
+              <TextInput
+                className="w-full pb-8 pr-6 lg:w-1/2"
+                label="Nomor Kamar"
+                name="number"
+                errors={errors.number}
+                value={values.number}
+                onChange={handleChange}
+              />
+              <TextInput
+                className="w-full pb-8 pr-6 lg:w-1/2"
+                label="Panjang Kamar"
+                name="length"
+                type="number"
+                errors={errors.length}
+                value={values.length}
+                onChange={handleChange}
+              />
+              <TextInput
+                className="w-full pb-8 pr-6 lg:w-1/2"
+                label="Lebar Kamar"
+                name="width"
+                type="number"
+                errors={errors.width}
+                value={values.width}
+                onChange={handleChange}
+              />
+              <TextInput
+                className="w-full pb-8 pr-6 lg:w-1/2"
+                label="Fasilitas"
+                name="facilities"
+                type="text"
+                errors={errors.facilities}
+                value={values.facilities}
+                onChange={handleChange}
+              />
+              <TextInput
+                className="w-full pb-8 pr-6 lg:w-1/2"
+                label="Biaya per bulan"
+                name="cost_per_month"
+                type="text"
+                errors={errors.cost_per_month}
+                value={values.cost_per_month}
+                onChange={handleChange}
+              />
             </div>
             <div className="flex items-center px-8 py-4 bg-gray-100 border-t border-gray-200">
               {!room.deleted_at && (
-                <DeleteButton onDelete={destroy}>
-                  Hapus kamar
-                </DeleteButton>
+                <DeleteButton onDelete={destroy}>Hapus kamar</DeleteButton>
               )}
-              <LoadingButton loading={sending} type="submit" className="ml-auto btn-indigo">
+              <LoadingButton
+                loading={sending}
+                type="submit"
+                className="ml-auto btn-indigo"
+              >
                 Perbarui kamar
               </LoadingButton>
             </div>
