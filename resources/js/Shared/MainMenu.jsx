@@ -8,9 +8,6 @@ export default ({ className }) => {
       <MainMenuItem text="Rooms" link="rooms.index" icon="office" />
       <MainMenuItem text="Renters" link="renters.index" icon="office" />
       <MainMenuItem text="Lodgings" link="lodgings.index" icon="office" />
-      <MainMenuItem text="Organizations" link="organizations" icon="office" />
-      <MainMenuItem text="Contacts" link="contacts" icon="users" />
-      <MainMenuItem text="Reports" link="reports" icon="printer" />
     </div>
   );
 };
