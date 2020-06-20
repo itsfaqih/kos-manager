@@ -30,8 +30,19 @@ Route::middleware('auth')->group(function() {
         Route::delete('{user}', 'UsersController@destroy')->name('destroy');
         Route::put('{user}/restore', 'UsersController@restore')->name('restore');
     });
-    //Renters
-    Route::prefix('renters')->name('renters.')->group(function () {
+
+        //Rooms
+    Route::prefix('rooms')->name('rooms.')->group(function () {
+        Route::get('/', 'RoomsController@index')->name('index')->middleware('remember');
+        Route::get('create', 'RoomsController@create')->name('create');
+        Route::post('/', 'RoomsController@store')->name('store');
+        Route::get('{room}/edit', 'RoomsController@edit')->name('edit');
+        Route::put('{room}', 'RoomsController@update')->name('update');
+        Route::delete('{room}', 'RoomsController@destroy')->name('destroy');
+        Route::put('{room}/restore', 'RoomsController@restore')->name('restore');
+    });
+     //Renters
+     Route::prefix('renters')->name('renters.')->group(function () {
         Route::get('/', 'RentersController@index')->name('index')->middleware('remember');
         Route::get('create', 'RentersController@create')->name('create');
         Route::post('/', 'RentersController@store')->name('store');
@@ -40,8 +51,9 @@ Route::middleware('auth')->group(function() {
         Route::delete('{renter}', 'RentersController@destroy')->name('destroy');
         Route::put('{renter}/restore', 'RentersController@restore')->name('restore');
     });
-        
+    
 });
+
 
 
 // Images
@@ -72,4 +84,3 @@ Route::get('reports')->name('reports')->uses('ReportsController')->middleware('a
 Route::get('500', function () {
     echo $fail;
 });
-

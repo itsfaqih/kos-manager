@@ -16,9 +16,11 @@ class CreateRoomsTable extends Migration
         Schema::create('rooms', function (Blueprint $table) {
             $table->id();
             $table->string('number');
-            $table->string('large');
-            $table->set('facilities', ['AC', 'Bed', 'Bathroom', 'Furniture']);
+            $table->integer('length');
+            $table->integer('width');
+            $table->set('facilities', ['AC', 'Bed', 'Bathroom', 'Furniture'])->nullable();
             $table->integer('cost_per_month');
+            $table->softDeletes();
             $table->timestamps();
         });
     }
