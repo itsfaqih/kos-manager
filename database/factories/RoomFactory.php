@@ -6,10 +6,10 @@ use Faker\Generator as Faker;
 
 $factory->define(App\Room::class, function (Faker $faker) {
     return [
-        'number' => $faker->unique(true)->numberBetween(1,12),
+        'number' => $faker->unique()->numberBetween(1,100),
         'length' => $faker->numberBetween(1,10),
         'width' => $faker->numberBetween(1,10),
-        'facilities' => $faker->randomElement(['AC','Bed','Bathroom','Furniture']),
+        'facilities' => implode(',', $faker->randomElements(['AC','Bed','Bathroom','Furniture'])),
         'cost_per_month' => $faker->numberBetween(1000000, 5000000)
     ];
 });

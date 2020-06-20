@@ -19,7 +19,7 @@ Route::post('logout')->name('logout')->uses('Auth\LoginController@logout');
 // Dashboard
 Route::get('/')->name('dashboard')->uses('DashboardController')->middleware('auth');
 
-Route::middleware('auth')->group(function() {
+Route::middleware('auth')->group(function () {
     // Users
     Route::prefix('users')->name('users.')->group(function () {
         Route::get('/', 'UsersController@index')->name('index')->middleware('remember');
@@ -30,8 +30,7 @@ Route::middleware('auth')->group(function() {
         Route::delete('{user}', 'UsersController@destroy')->name('destroy');
         Route::put('{user}/restore', 'UsersController@restore')->name('restore');
     });
-
-        //Rooms
+    // Rooms
     Route::prefix('rooms')->name('rooms.')->group(function () {
         Route::get('/', 'RoomsController@index')->name('index')->middleware('remember');
         Route::get('create', 'RoomsController@create')->name('create');
@@ -41,8 +40,8 @@ Route::middleware('auth')->group(function() {
         Route::delete('{room}', 'RoomsController@destroy')->name('destroy');
         Route::put('{room}/restore', 'RoomsController@restore')->name('restore');
     });
-     //Renters
-     Route::prefix('renters')->name('renters.')->group(function () {
+    // Renters
+    Route::prefix('renters')->name('renters.')->group(function () {
         Route::get('/', 'RentersController@index')->name('index')->middleware('remember');
         Route::get('create', 'RentersController@create')->name('create');
         Route::post('/', 'RentersController@store')->name('store');
@@ -51,7 +50,16 @@ Route::middleware('auth')->group(function() {
         Route::delete('{renter}', 'RentersController@destroy')->name('destroy');
         Route::put('{renter}/restore', 'RentersController@restore')->name('restore');
     });
-    
+    // Lodgings
+    Route::prefix('lodgings')->name('lodgings.')->group(function () {
+        Route::get('/', 'LodgingsController@index')->name('index')->middleware('remember');
+        Route::get('create', 'LodgingsController@create')->name('create');
+        Route::post('/', 'LodgingsController@store')->name('store');
+        Route::get('{lodging}/edit', 'LodgingsController@edit')->name('edit');
+        Route::put('{lodging}', 'LodgingsController@update')->name('update');
+        Route::delete('{lodging}', 'LodgingsController@destroy')->name('destroy');
+        Route::put('{lodging}/restore', 'LodgingsController@restore')->name('restore');
+    });
 });
 
 

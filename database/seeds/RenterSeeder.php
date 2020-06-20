@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
 use App\Renter;
 
 class RenterSeeder extends Seeder
@@ -13,6 +12,6 @@ class RenterSeeder extends Seeder
      */
     public function run()
     {
-        $renters = factory(Renter::class, 50)->create(); 
+        factory(Renter::class, 50)->create(); 
     }
 }

@@ -40,13 +40,13 @@ export default () => {
   }
 
   function destroy() {
-    if (confirm('Apa kamu yakin ingin menghapus kamar ini?')) {
+    if (confirm('Apa anda yakin ingin menghapus kamar ini?')) {
       Inertia.delete(route('rooms.destroy', room.id));
     }
   }
 
   function restore() {
-    if (confirm('Apa kamu yakin ingin memulihkan kamar ini?')) {
+    if (confirm('Apa anda yakin ingin memulihkan kamar ini?')) {
       Inertia.put(route('rooms.restore', room.id));
     }
   }

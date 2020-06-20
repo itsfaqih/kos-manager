@@ -14,11 +14,12 @@ class CreateLodgingsTable extends Migration
     public function up()
     {
         Schema::create('lodgings', function (Blueprint $table) {
-             $table->id();
+            $table->id();
             $table->foreignId('renter_id')->constrained()->onDelete('cascade');
             $table->foreignId('room_id')->constrained()->onDelete('cascade');
-            $table->date('start_at');
-            $table->date('end_at');
+            $table->timestamp('start_at')->nullable();
+            $table->timestamp('end_at')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }
