@@ -11,12 +11,12 @@ import TrashedMessage from '@/Shared/TrashedMessage';
 import Icon from '@/Shared/Icon';
 
 export default () => {
-  const { errors, lodging } = usePage();
+  const { errors, lodging, renters, rooms } = usePage();
   const [sending, setSending] = useState(false);
 
   const [values, setValues] = useState({
-    room_id: lodging.room_id || '',
-    renter_id: lodging.renter_id || '',
+    room_id: lodging.room.id || '',
+    renter_id: lodging.renter.id || '',
     start_at: lodging.start_at || '',
     end_at: lodging.end_at || ''
   });
@@ -40,34 +40,34 @@ export default () => {
   }
 
   function destroy() {
-    if (confirm('Are you sure you want to delete this lodging?')) {
+    if (confirm('Apa anda yakin ingin menghapus data penginapan ini?')) {
       Inertia.delete(route('lodgings.destroy', lodging.id));
     }
   }
 
   function restore() {
-    if (confirm('Are you sure you want to restore this lodging?')) {
+    if (confirm('Apa anda yakin ingin memulihkan data penginapan ini?')) {
       Inertia.put(route('lodgings.restore', lodging.id));
     }
   }
 
   return (
     <Layout>
-      <Helmet title={`Lodging Room #${values.room_id} - Renter #${values.renter_id}`} />
+      <Helmet title={`Penginapan Kamar ${lodging.room.number} - ${lodging.renter.name}`} />
       <div>
         <h1 className="mb-8 text-3xl font-bold">
           <InertiaLink
             href={route('lodgings.index')}
             className="text-indigo-600 hover:text-indigo-700"
           >
-            Lodgings
+            Penginapan
           </InertiaLink>
           <span className="mx-2 font-medium text-indigo-600">/</span>
-          {`Room #${values.room_id} - Renter #${values.renter_id}`}
+          {`Kamar ${lodging.room.number} - ${lodging.renter.name}`}
         </h1>
         {lodging.deleted_at && (
           <TrashedMessage onRestore={restore}>
-            This lodging has been deleted.
+            Data penginapan ini telah dihapus.
           </TrashedMessage>
         )}
         <div className="max-w-3xl overflow-hidden bg-white rounded shadow">
@@ -75,32 +75,39 @@ export default () => {
             <div className="flex flex-wrap p-8 -mb-8 -mr-6">
             <SelectInput
                 className="w-full pb-8 pr-6 lg:w-1/2"
-                label="Renter"
+                label="Penyewa"
                 name="renter_id"
                 errors={errors.renter_id}
                 value={values.renter_id}
                 onChange={handleChange}
               >
-                <option value=""></option>
-                <option value="CA">Canada</option>
-                <option value="US">United States</option>
+                <option value="" disabled>Pilih Penyewa</option>
+                  {
+                    renters.map((renter, index) => (
+                      <option key={index} value={renter.id}>{renter.name}</option>
+                    ))
+                  }
               </SelectInput>
               <SelectInput
                 className="w-full pb-8 pr-6 lg:w-1/2"
-                label="Room"
+                label="Kamar"
                 name="room_id"
                 errors={errors.room_id}
                 value={values.room_id}
                 onChange={handleChange}
               >
-                <option value=""></option>
-                <option value="CA">Canada</option>
-                <option value="US">United States</option>
+                <option value="" disabled>Pilih Kamar</option>
+                  {
+                    rooms.map((room, index) => (
+                      <option key={index} value={room.id}>{room.number}</option>
+                    ))
+                  }
               </SelectInput>
               <TextInput
                 className="w-full pb-8 pr-6 lg:w-1/2"
                 label="Start at"
                 name="start_at"
+                type="date"
                 errors={errors.start_at}
                 value={values.start_at}
                 onChange={handleChange}
@@ -109,6 +116,7 @@ export default () => {
                 className="w-full pb-8 pr-6 lg:w-1/2"
                 label="End at"
                 name="end_at"
+                type="date"
                 errors={errors.end_at}
                 value={values.end_at}
                 onChange={handleChange}
@@ -117,7 +125,7 @@ export default () => {
             <div className="flex items-center px-8 py-4 bg-gray-100 border-t border-gray-200">
               {!lodging.deleted_at && (
                 <DeleteButton onDelete={destroy}>
-                  Delete Lodging
+                  Hapus Penginapan
                 </DeleteButton>
               )}
               <LoadingButton
@@ -125,7 +133,7 @@ export default () => {
                 type="submit"
                 className="ml-auto btn-indigo"
               >
-                Update Lodging
+                Perbarui Penginapan
               </LoadingButton>
             </div>
           </form>

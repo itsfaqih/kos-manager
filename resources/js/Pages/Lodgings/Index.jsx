@@ -13,15 +13,15 @@ const Lodgings = () => {
     <div>
       <Helmet title="Lodgings" />
       <div>
-        <h1 className="mb-8 text-3xl font-bold">Lodgings</h1>
+        <h1 className="mb-8 text-3xl font-bold">Penginapan</h1>
         <div className="flex items-center justify-between mb-6">
           <SearchFilter />
           <InertiaLink
             className="btn-indigo"
             href={route('lodgings.create')}
           >
-            <span>Create</span>
-            <span className="hidden md:inline"> Lodging</span>
+            <span>Tambah</span>
+            <span className="hidden md:inline"> Penginapan</span>
           </InertiaLink>
         </div>
         <div className="overflow-x-auto bg-white rounded shadow">
@@ -39,7 +39,7 @@ const Lodgings = () => {
               </tr>
             </thead>
             <tbody>
-              {data.map(({ id, room_id, renter_id, start_at, end_at, deleted_at }) => {
+              {data.map(({ id, room, renter, start_at, end_at, deleted_at }) => {
                 return (
                   <tr
                     key={id}
@@ -50,7 +50,7 @@ const Lodgings = () => {
                         href={route('lodgings.edit', id)}
                         className="flex items-center px-6 py-4 focus:text-indigo-700"
                       >
-                        {room_id}
+                        {room.number}
                         {deleted_at && (
                           <Icon
                             name="trash"
@@ -65,7 +65,7 @@ const Lodgings = () => {
                         href={route('lodgings.edit', id)}
                         className="flex items-center px-6 py-4 focus:text-indigo"
                       >
-                        {renter_id}
+                        {renter.name}
                       </InertiaLink>
                     </td>
                     <td className="border-t">

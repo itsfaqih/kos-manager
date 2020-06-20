@@ -8,14 +8,15 @@ import TextInput from '@/Shared/TextInput';
 import SelectInput from '@/Shared/SelectInput';
 
 export default () => {
-  const { errors, renters, rooms } = usePage();
+  const { errors } = usePage();
   const [sending, setSending] = useState(false);
 
   const [values, setValues] = useState({
-    room_id: '',
-    renter_id: '',
-    start_at: '',
-    end_at: '',
+    nik: '',
+    name: '',
+    gender: '',
+    phone_number: '',
+    address: '',
   });
 
   function handleChange(e) {
@@ -30,73 +31,71 @@ export default () => {
   function handleSubmit(e) {
     e.preventDefault();
     setSending(true);
-    Inertia.post(route('lodgings.store'), values).then(() => {
+    Inertia.post(route('renters.store'), values).then(() => {
       setSending(false);
     });
   }
 
   return (
     <Layout>
-      <Helmet title="Create Lodging" />
+      <Helmet title="Create Renter" />
       <div>
         <h1 className="mb-8 text-3xl font-bold">
           <InertiaLink
-            href={route('lodgings.index')}
+            href={route('renters.index')}
             className="text-indigo-600 hover:text-indigo-700"
           >
-            Penginapan
+            Penyewa
           </InertiaLink>
           <span className="font-medium text-indigo-600"> /</span> Buat
         </h1>
         <div className="max-w-3xl overflow-hidden bg-white rounded shadow">
           <form onSubmit={handleSubmit}>
             <div className="flex flex-wrap p-8 -mb-8 -mr-6">
-              <SelectInput
+            <TextInput
                 className="w-full pb-8 pr-6 lg:w-1/2"
-                label="Penyewa"
-                name="renter_id"
-                errors={errors.renter_id}
-                value={values.renter_id}
-                onChange={handleChange}
-              >
-                <option value="" disabled>Pilih Penyewa</option>
-                  {
-                    renters.map((renter, index) => (
-                      <option key={index} value={renter.id}>{renter.name}</option>
-                    ))
-                  }
-              </SelectInput>
-              <SelectInput
-                className="w-full pb-8 pr-6 lg:w-1/2"
-                label="Kamar"
-                name="room_id"
-                errors={errors.room_id}
-                value={values.room_id}
-                onChange={handleChange}
-              >
-                <option value="" disabled>Pilih Kamar</option>
-                  {
-                    rooms.map((room, index) => (
-                      <option key={index} value={room.id}>{room.number}</option>
-                    ))
-                  }
-              </SelectInput>
-              <TextInput
-                className="w-full pb-8 pr-6 lg:w-1/2"
-                label="Tanggal mulai sewa"
-                name="start_at"
-                type="date"
-                errors={errors.start_at}
-                value={values.start_at}
+                label="nik"
+                name="nik"
+                errors={errors.nik}
+                value={values.nik}
                 onChange={handleChange}
               />
               <TextInput
                 className="w-full pb-8 pr-6 lg:w-1/2"
-                label="Tanggal selesai sewa"
-                name="end_at"
-                type="date"
-                errors={errors.end_at}
-                value={values.end_at}
+                label="name"
+                name="name"
+                errors={errors.name}
+                value={values.name}
+                onChange={handleChange}
+              />
+              <SelectInput
+                className="w-full pb-8 pr-6 lg:w-1/2"
+                label="gender"
+                name="gender"
+                errors={errors.gender}
+                value={values.gender}
+                onChange={handleChange}
+              >
+                <option value=""></option>
+                <option value="Laki-Laki">Laki-Laki</option>
+                <option value="Perempuan">Perempuan</option>
+              </SelectInput>
+              <TextInput
+                className="w-full pb-8 pr-6 lg:w-1/2"
+                label="phone_number"
+                name="phone_number"
+                type="text"
+                errors={errors.phone_number}
+                value={values.phone_number}
+                onChange={handleChange}
+              />
+              <TextInput
+                className="w-full pb-8 pr-6 lg:w-1/2"
+                label="Address"
+                name="address"
+                type="text"
+                errors={errors.address}
+                value={values.address}
                 onChange={handleChange}
               />
             </div>
@@ -106,7 +105,7 @@ export default () => {
                 type="submit"
                 className="btn-indigo"
               >
-                Tambah Penginapan
+                Tambahkan Penyewa
               </LoadingButton>
             </div>
           </form>

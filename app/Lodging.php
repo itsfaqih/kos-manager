@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Lodging extends Model
 {
     use SoftDeletes;
+    protected $dates = ['start_at', 'end_at'];
 
     public function renter()
     {

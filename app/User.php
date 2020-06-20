@@ -25,6 +25,11 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
         return $this->belongsTo(Account::class);
     }
 
+    // public function renter()
+    // {
+    //     return $this->belongsTo(Renter::class);
+    // }
+
     public function getNameAttribute()
     {
         return $this->first_name.' '.$this->last_name;
@@ -59,6 +64,8 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
             case 'owner': return $query->where('owner', true);
         }
     }
+
+
 
     public function scopeFilter($query, array $filters)
     {

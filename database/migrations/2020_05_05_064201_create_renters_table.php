@@ -15,11 +15,12 @@ class CreateRentersTable extends Migration
     {
         Schema::create('renters', function (Blueprint $table) {
             $table->id();
-            $table->integer('nik');
+            $table->string('nik');
             $table->string('name');
             $table->enum('gender', ['Laki-Laki', 'Perempuan']);
             $table->string('phone_number');
             $table->text('address');
+            $table->softDeletes();
             $table->timestamps();
 
         });

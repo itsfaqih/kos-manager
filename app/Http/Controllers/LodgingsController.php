@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Inertia\Inertia;
 use App\Lodging;
+use App\Renter;
+use App\Room;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Redirect;
@@ -17,13 +19,26 @@ class LodgingsController extends Controller
             'lodgings' => Lodging::orderBy('id', 'desc')
                 ->filter(Request::only('search', 'trashed'))
                 ->paginate()
+                ->transform(function ($lodging) {
+                    return [
+                        'id' => $lodging->id,
+                        'renter' => $lodging->renter,
+                        'room' => $lodging->room,
+                        'start_at' => $lodging->start_at->format('d F Y'),
+                        'end_at' => $lodging->end_at->format('d F Y'),
+                        'deleted_at' => $lodging->deleted_at,
+                    ];
+                }),
                 // ->only('id', 'room_id', 'renter_id', 'start_at', 'end_at', 'deleted_at')
         ]);
     }
 
     public function create()
     {
-        return Inertia::render('Lodgings/Create');
+        return Inertia::render('Lodgings/Create', [
+            'rooms' => Room::all(),
+            'renters' => Renter::all()
+        ]);
     }
 
     public function store()
@@ -37,7 +52,7 @@ class LodgingsController extends Controller
             ])
         );
 
-        return Redirect::route('lodgings')->with('success', 'Lodging created.');
+        return Redirect::route('lodgings.index')->with('success', 'Data Penginapan berhasil ditambahkan.');
     }
 
     public function edit(Lodging $lodging)
@@ -45,11 +60,14 @@ class LodgingsController extends Controller
         return Inertia::render('Lodgings/Edit', [
             'lodging' => [
                 'id' => $lodging->id,
-                'renter_id' => $lodging->renter_id,
-                'room_id' => $lodging->room_id,
-                'start_at' => $lodging->start_at,
-                'end_at' => $lodging->end_at,                
+                'renter' => $lodging->renter,
+                'room' => $lodging->room,
+                'start_at' => $lodging->start_at->format('Y-m-d'),
+                'end_at' => $lodging->end_at->format('Y-m-d'),
+                'deleted_at' => $lodging->deleted_at
             ],
+            'rooms' => Room::all(),
+            'renters' => Renter::all(),
         ]);
     }
 
@@ -64,20 +82,20 @@ class LodgingsController extends Controller
             ])
         );
 
-        return Redirect::back()->with('success', 'Lodging updated.');
+        return Redirect::back()->with('success', 'Data Penginapan berhasil diperbarui.');
     }
 
     public function destroy(Lodging $lodging)
     {
         $lodging->delete();
 
-        return Redirect::back()->with('success', 'Lodging deleted.');
+        return Redirect::back()->with('success', 'Data Penginapan berhasil dihapus.');
     }
 
     public function restore(Lodging $lodging)
     {
         $lodging->restore();
 
-        return Redirect::back()->with('success', 'Lodging restored.');
+        return Redirect::back()->with('success', 'Data Penginapan berhasil dipulihkan.');
     }
 }
