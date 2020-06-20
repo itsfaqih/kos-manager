@@ -17,7 +17,7 @@ class RoomsController extends Controller
             'rooms' => Room::orderBy('number')
                 ->filter(Request::only('search', 'trashed'))
                 ->paginate()
-                ->only('id', 'number', 'length', 'width', 'facilities', 'cost_per_month','created_at','deleted_at'),
+                ->only('id', 'number', 'length', 'width', 'facilities', 'cost_per_month', 'created_at', 'deleted_at'),
         ]);
     }
 
@@ -49,21 +49,23 @@ class RoomsController extends Controller
                 'number' => $room->number,
                 'length' => $room->length,
                 'width' => $room->width,
-                'facilities' => $room->facilites,
+                'facilities' => $room->facilities,
                 'cost_per_month' => $room->cost_per_month,
-                ],
+                'deleted_at' => $room->deleted_at
+            ],
         ]);
     }
 
     public function update(Room $room)
     {
         $room->update(
-            Request::validate(['number' => ['required', 'max:100'],
-            'number' => ['nullable', 'max:50', ''],
-            'length' => ['nullable', 'max:50', ''],
-            'width' => ['nullable', 'max:50', ''],
-            'facilities' => ['nullable', 'max:50'],
-            'cost_per_month' => ['nullable', 'max:150'],
+            Request::validate([
+                'number' => ['required', 'max:100'],
+                'number' => ['nullable', 'max:50', ''],
+                'length' => ['nullable', 'max:50', ''],
+                'width' => ['nullable', 'max:50', ''],
+                'facilities' => ['nullable', 'max:50'],
+                'cost_per_month' => ['nullable', 'max:150'],
             ])
         );
 

@@ -21,7 +21,7 @@ export default () => {
     facilities: room.facilities || '',
     cost_per_month: room.cost_per_month || ''
   });
-
+console.log(room);
   function handleChange(e) {
     const key = e.target.name;
     const value = e.target.value;
@@ -53,7 +53,7 @@ export default () => {
 
   return (
     <Layout>
-      <Helmet title={values.name} />
+      <Helmet title={`Kamar #${values.number}`} />
       <div>
         <h1 className="mb-8 text-3xl font-bold">
           <InertiaLink
@@ -63,7 +63,7 @@ export default () => {
             Kamar
           </InertiaLink>
           <span className="mx-2 font-medium text-indigo-600">/</span>
-          {values.name}
+          #{values.number}
         </h1>
         {room.deleted_at && (
           <TrashedMessage onRestore={restore}>

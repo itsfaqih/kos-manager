@@ -17,7 +17,7 @@ const Rooms = () => {
         <div className="flex items-center justify-between mb-6">
           <SearchFilter />
           <InertiaLink className="btn-indigo" href={route('rooms.create')}>
-            <span>Buat</span>
+            <span>Tambah</span>
             <span className="hidden md:inline"> Kamar</span>
           </InertiaLink>
         </div>
