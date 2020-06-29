@@ -1,4 +1,7 @@
 module.exports = {
+  purge: [
+    './resources/js/**/*.jsx',
+  ],
   theme: {
     extend: {
       boxShadow: theme => ({

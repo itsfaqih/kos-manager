@@ -9,25 +9,7 @@ const Dashboard = () => {
       <Helmet>
         <title>Dashboard</title>
       </Helmet>
-      <h1 className="mb-8 text-3xl font-bold">Dashboard</h1>
-      <p className="mb-12 leading-normal">
-        Hey there! Welcome to Ping CRM, a demo app designed to help illustrate
-        how
-        <a
-          className="mx-1 text-indigo-600 underline hover:text-orange-500"
-          href="https://inertiajs.com"
-        >
-          Inertia.js
-        </a>
-        works with
-        <a
-          className="ml-1 text-indigo-600 underline hover:text-orange-500"
-          href="https://reactjs.org/"
-        >
-          React
-        </a>
-        .
-      </p>
+      <h1 className="mb-8 text-3xl font-bold">Selamat datang kembali</h1>
       <div>
         <InertiaLink className="mr-1 btn-indigo" href="/500">
           500 error
