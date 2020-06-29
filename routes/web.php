@@ -40,6 +40,17 @@ Route::middleware('auth')->group(function() {
         Route::delete('{renter}', 'RentersController@destroy')->name('destroy');
         Route::put('{renter}/restore', 'RentersController@restore')->name('restore');
     });
+    // Bills
+    Route::prefix('bills')->name('bills.')->group(function () {
+        Route::get('/', 'BillsController@index')->name('index')->middleware('remember');
+        Route::get('create', 'BillsController@create')->name('create');
+        Route::post('/', 'RentersController@store')->name('store');
+        Route::get('{bill}/edit', 'BillsController@edit')->name('edit');
+        Route::put('{bill}', 'BillsController@update')->name('update');
+        Route::delete('{bill}', 'BillsController@destroy')->name('destroy');
+        Route::put('{bill}/restore', 'BillsController@restore')->name('restore');
+    });
+        
         
 });
 
@@ -72,4 +83,3 @@ Route::get('reports')->name('reports')->uses('ReportsController')->middleware('a
 Route::get('500', function () {
     echo $fail;
 });
-

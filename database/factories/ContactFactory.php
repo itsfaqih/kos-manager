@@ -7,7 +7,7 @@ $factory->define(App\Contact::class, function (Faker $faker) {
         'first_name' => $faker->firstName,
         'last_name' => $faker->lastName,
         'email' => $faker->unique()->safeEmail,
-        'phone' => $faker->tollFreePhoneNumber,
+        'phone' => $faker->phoneNumber,
         'address' => $faker->streetAddress,
         'city' => $faker->city,
         'region' => $faker->state,
