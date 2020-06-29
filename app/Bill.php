@@ -14,6 +14,10 @@ class Bill extends Model
         return $this->hasMany(Contact::class);
     }
     */
+    public function logdging()
+    {
+        return $this->belongsTo(Lodging::class);
+    }
     
     public function scopeFilter($query, array $filters)
     {

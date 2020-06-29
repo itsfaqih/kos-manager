@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Inertia\Inertia;
 use App\Bill;
+use App\Lodging;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Redirect;
@@ -23,13 +24,16 @@ class BillsController extends Controller
 
     public function create()
     {
-        return Inertia::render('Bills/Create');
+        return Inertia::render('Bills/Create', [
+            'lodgings' => Lodging::all(),
+        ]);
     }
 
     public function store()
     {
         Bill::create(
             Request::validate([
+                'lodging_id' => ['required', 'exists:lodgings,id'],
                 'name' => ['required'],
                 'description' => ['required'],
                 'amount' => ['required'],
@@ -37,7 +41,7 @@ class BillsController extends Controller
             ])
         );
 
-        return Redirect::route('bills.index')->with('success', 'Bill created.');
+        return Redirect::route('bills.index')->with('success', 'Data Tagihan berhasil ditambahkan.');
     }
 
     public function edit(Bill $bill)
@@ -52,6 +56,7 @@ class BillsController extends Controller
                 'per_month' => $bill->per_month,
                 'deleted_at' => $bill->deleted_at,
             ],
+            'lodgings' => Lodging::all(),
         ]);
     }
 
@@ -59,6 +64,7 @@ class BillsController extends Controller
     {
         $bill->update(
             Request::validate([
+                'lodging_id' => ['required', 'exists:lodgings,id'],
                 'name' => ['required'],
                 'description' => ['required'],
                 'amount' => ['required'],
@@ -66,21 +72,21 @@ class BillsController extends Controller
             ])
         );
 
-        return Redirect::back()->with('success', 'Bill updated.');
+        return Redirect::back()->with('success', 'Data Tagihan berhasil diperbarui.');
     }
 
     public function destroy(Bill $bill)
     {
         $bill->delete();
 
-        return Redirect::back()->with('success', 'Bill deleted.');
+        return Redirect::back()->with('success', 'Data Tagihan berhasil dihapus.');
     }
 
     public function restore(Bill $bill)
     {
         $bill->restore();
 
-        return Redirect::back()->with('success', 'bill restored.');
+        return Redirect::back()->with('success', 'Data Tagihan berhasil dipulihkan.');
     }
     
 }

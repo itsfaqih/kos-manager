@@ -8,7 +8,7 @@ import TextInput from '@/Shared/TextInput';
 import SelectInput from '@/Shared/SelectInput';
 
 export default () => {
-  const { errors } = usePage();
+  const { errors, lodgings } = usePage();
   const [sending, setSending] = useState(false);
 
   const [values, setValues] = useState({
@@ -45,24 +45,31 @@ export default () => {
             href={route('bills.index')}
             className="text-indigo-600 hover:text-indigo-700"
           >
-            Bills
+            Tagihan
           </InertiaLink>
-          <span className="font-medium text-indigo-600"> /</span> Create
+          <span className="font-medium text-indigo-600"> /</span> Tambah
         </h1>
         <div className="max-w-3xl overflow-hidden bg-white rounded shadow">
           <form onSubmit={handleSubmit}>
             <div className="flex flex-wrap p-8 -mb-8 -mr-6">
-              <TextInput
+              <SelectInput
                 className="w-full pb-8 pr-6 lg:w-1/2"
-                label="lodging_id"
+                label="Penginapan"
                 name="lodging_id"
                 errors={errors.lodging_id}
                 value={values.lodging_id}
                 onChange={handleChange}
-              />
+              >
+                <option value="" disabled>Pilih Penginapan</option>
+                  {
+                    lodgings.map((lodging, index) => (
+                      <option key={index} value={lodging.id}>{lodging.id}</option>
+                    ))
+                  }
+              </SelectInput>
               <TextInput
                 className="w-full pb-8 pr-6 lg:w-1/2"
-                label="name"
+                label="Nama Tagihan"
                 name="name"
                 errors={errors.name}
                 value={values.name}
@@ -70,7 +77,7 @@ export default () => {
               />
               <TextInput
                 className="w-full pb-8 pr-6 lg:w-1/2"
-                label="description"
+                label="Deskripsi"
                 name="description"
                 type="text"
                 errors={errors.description}
@@ -79,7 +86,7 @@ export default () => {
               />
               <TextInput
                 className="w-full pb-8 pr-6 lg:w-1/2"
-                label="amount"
+                label="Jumlah"
                 name="amount"
                 type="text"
                 errors={errors.amount}
@@ -88,7 +95,7 @@ export default () => {
               />
               <TextInput
                 className="w-full pb-8 pr-6 lg:w-1/2"
-                label="per_month"
+                label="Per bulan"
                 name="per_month"
                 type="text"
                 errors={errors.per_month}
@@ -102,7 +109,7 @@ export default () => {
                 type="submit"
                 className="btn-indigo"
               >
-                Create Bill
+                Tambah Tagihan
               </LoadingButton>
             </div>
           </form>

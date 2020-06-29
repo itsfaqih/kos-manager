@@ -11,10 +11,11 @@ import TrashedMessage from '@/Shared/TrashedMessage';
 import Icon from '@/Shared/Icon';
 
 export default () => {
-  const { errors, bill } = usePage();
+  const { errors, bill, lodgings } = usePage();
   const [sending, setSending] = useState(false);
 
   const [values, setValues] = useState({
+    lodging_id: bill.lodging_id || '',
     name: bill.name || '',
     description: bill.description || '',
     amount: bill.amount || '',
@@ -40,13 +41,13 @@ export default () => {
   }
 
   function destroy() {
-    if (confirm('Are you sure you want to delete this renter?')) {
+    if (confirm('Apa anda yakin ingin menghapus data tagihan ini?')) {
       Inertia.delete(route('bills.destroy', bill.id));
     }
   }
 
   function restore() {
-    if (confirm('Are you sure you want to restore this renter?')) {
+    if (confirm('Apa anda yakin ingin memulihkan data tagihan ini?')) {
       Inertia.put(route('bills.restore', bill.id));
     }
   }
@@ -57,25 +58,40 @@ export default () => {
       <div>
         <h1 className="mb-8 text-3xl font-bold">
           <InertiaLink
-            href={route('bill.index')}
+            href={route('bills.index')}
             className="text-indigo-600 hover:text-indigo-700"
           >
-            Bills
+            Tagihan
           </InertiaLink>
           <span className="mx-2 font-medium text-indigo-600">/</span>
           {values.name}
         </h1>
          {bill.deleted_at && (
            <TrashedMessage onRestore={restore}>
-             This renter has been deleted.
+             Data Tagihan ini telah dihapus.
            </TrashedMessage>
         )}
         <div className="max-w-3xl overflow-hidden bg-white rounded shadow">
           <form onSubmit={handleSubmit}>
           <div className="flex flex-wrap p-8 -mb-8 -mr-6">
+              <SelectInput
+                className="w-full pb-8 pr-6 lg:w-1/2"
+                label="Penginapan"
+                name="lodging_id"
+                errors={errors.lodging_id}
+                value={values.lodging_id}
+                onChange={handleChange}
+              >
+                <option value="" disabled>Pilih Penginapan</option>
+                  {
+                    lodgings.map((lodging, index) => (
+                      <option key={index} value={lodging.id}>{lodging.id}</option>
+                    ))
+                  }
+              </SelectInput>
               <TextInput
                 className="w-full pb-8 pr-6 lg:w-1/2"
-                label="name"
+                label="Nama Tagihan"
                 name="name"
                 errors={errors.name}
                 value={values.name}
@@ -83,7 +99,7 @@ export default () => {
               />
               <TextInput
                 className="w-full pb-8 pr-6 lg:w-1/2"
-                label="description"
+                label="Deskripsi"
                 name="description"
                 errors={errors.description}
                 value={values.description}
@@ -91,7 +107,7 @@ export default () => {
               />
               <TextInput
                 className="w-full pb-8 pr-6 lg:w-1/2"
-                label="amount"
+                label="Jumlah"
                 name="amount"
                 type="text"
                 errors={errors.amount}
@@ -100,7 +116,7 @@ export default () => {
               />
               <TextInput
                 className="w-full pb-8 pr-6 lg:w-1/2"
-                label="per_month"
+                label="Per Bulan"
                 name="per_month"
                 type="text"
                 errors={errors.per_month}
@@ -111,7 +127,7 @@ export default () => {
             <div className="flex items-center px-8 py-4 bg-gray-100 border-t border-gray-200">
               {!bill.deleted_at && (
                 <DeleteButton onDelete={destroy}>
-                  Delete Bill
+                  Hapus Tagihan
                 </DeleteButton>
               )}
               <LoadingButton
@@ -119,7 +135,7 @@ export default () => {
                 type="submit"
                 className="ml-auto btn-indigo"
               >
-                Update Bill
+                Perbarui Tagihan
               </LoadingButton>
             </div>
           </form>

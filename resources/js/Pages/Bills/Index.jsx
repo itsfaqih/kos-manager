@@ -13,25 +13,25 @@ const Bills = () => {
     <div>
       <Helmet title="Bills" />
       <div>
-        <h1 className="mb-8 text-3xl font-bold">Bills</h1>
+        <h1 className="mb-8 text-3xl font-bold">Tagihan</h1>
         <div className="flex items-center justify-between mb-6">
           <SearchFilter />
           <InertiaLink
             className="btn-indigo"
             href={route('bills.create')}
           >
-            <span>Create</span>
-            <span className="hidden md:inline"> Bill</span>
+            <span>Tambah</span>
+            <span className="hidden md:inline"> Tagihan</span>
           </InertiaLink>
         </div>
         <div className="overflow-x-auto bg-white rounded shadow">
           <table className="w-full whitespace-no-wrap">
             <thead>
               <tr className="font-bold text-left">
-                <th className="px-6 pt-5 pb-4">Name</th>
-                <th className="px-6 pt-5 pb-4">Description</th>
-                <th className="px-6 pt-5 pb-4">Amount</th>
-                <th className="px-6 pt-5 pb-4">Per Month</th>
+                <th className="px-6 pt-5 pb-4">Nama Tagihan</th>
+                <th className="px-6 pt-5 pb-4">Deskripsi</th>
+                <th className="px-6 pt-5 pb-4">Jumlah</th>
+                <th className="px-6 pt-5 pb-4">Per Bulan</th>
               </tr>
             </thead>
             <tbody>
@@ -100,7 +100,7 @@ const Bills = () => {
               {data.length === 0 && (
                 <tr>
                   <td className="px-6 py-4 border-t" colSpan="4">
-                    No bills found.
+                    Tagihan tidak ditemukan.
                   </td>
                 </tr>
               )}
