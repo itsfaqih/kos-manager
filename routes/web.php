@@ -51,6 +51,17 @@ Route::middleware('auth')->group(function () {
         Route::put('{renter}/restore', 'RentersController@restore')->name('restore');
     });
 
+     // Invoices
+     Route::prefix('invoices')->name('invoices.')->group(function () {
+        Route::get('/', 'InvoicesController@index')->name('index')->middleware('remember');
+        Route::get('create', 'InvoicesController@create')->name('create');
+        Route::post('/', 'InvoicesController@store')->name('store');
+        Route::get('{invoice}/edit', 'InvoicesController@edit')->name('edit');
+        Route::put('{invoice}', 'InvoicesController@update')->name('update');
+        Route::delete('{invoice}', 'InvoicesController@destroy')->name('destroy');
+        Route::put('{invoice}/restore', 'InvoicesController@restore')->name('restore');
+    });
+
     // Bills
     Route::prefix('bills')->name('bills.')->group(function () {
         Route::get('/', 'BillsController@index')->name('index')->middleware('remember');
