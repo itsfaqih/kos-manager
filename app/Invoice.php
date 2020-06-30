@@ -4,10 +4,10 @@ namespace App;
 
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Lodging extends Model
+class Invoice extends Model
 {
     use SoftDeletes;
-    protected $dates = ['start_at', 'end_at'];
+    // protected $dates = ['start_at', 'end_at'];
 
     public function bill()
     {
