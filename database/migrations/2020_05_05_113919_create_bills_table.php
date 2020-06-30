@@ -20,6 +20,7 @@ class CreateBillsTable extends Migration
             $table->text('description');
             $table->integer('amount');
             $table->boolean('per_month');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

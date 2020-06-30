@@ -75,11 +75,9 @@ Route::middleware('auth')->group(function () {
 });
 
 
-
 // Images
 Route::get('/img/{path}', 'ImagesController@show')->where('path', '.*');
 
 // 500 error
-Route::get('500', function () {
-    echo $fail;
-});
+// Route::get('500', function () {
+//     echo $fail;
