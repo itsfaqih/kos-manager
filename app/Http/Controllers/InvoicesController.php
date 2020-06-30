@@ -5,11 +5,10 @@ namespace App\Http\Controllers;
 use Inertia\Inertia;
 use App\Invoice;
 use App\Bill;
-use App\Renter;
-use App\Room;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Redirect;
+use SebastianBergmann\Environment\Console;
 
 class InvoicesController extends Controller
 {
@@ -17,16 +16,21 @@ class InvoicesController extends Controller
     {
         return Inertia::render('Invoices/Index', [
             'filters' => Request::all('search', 'trashed'),
-            'Invoices' => Invoice::orderBy('id', 'desc')
+            'invoices' => Invoice::orderBy('id', 'desc')
                 ->filter(Request::only('search', 'trashed'))
                 ->paginate()
                 ->transform(function ($invoice) {
                     return [
                         'id' => $invoice->id,
                         'bill_id' => $invoice->bill_id,
+                        'bill' => $invoice->bill,
+
+                        'deleted_at' => $invoice->deleted_at,
+                        'created_at' => $invoice->created_at,
                     ];
                 }),
-                // ->only('id', 'room_id', 'renter_id', 'start_at', 'end_at', 'deleted_at')
+
+            // ->only('id', 'room_id', 'renter_id', 'start_at', 'end_at', 'deleted_at')
         ]);
     }
 
@@ -45,50 +49,44 @@ class InvoicesController extends Controller
             ])
         );
 
-        return Redirect::route('invoices.index')->with('success', 'Data Penginapan berhasil ditambahkan.');
+        return Redirect::route('invoices.index')->with('success', 'Data Penagihan berhasil ditambahkan.');
     }
 
     public function edit(Invoice $invoice)
     {
-        return Inertia::render('Lodgings/Edit', [
-            'lodging' => [
-                'id' => $lodging->id,
-                'renter' => $lodging->renter,
-                'room' => $lodging->room,
-                'start_at' => $lodging->start_at->format('Y-m-d'),
-                'end_at' => $lodging->end_at->format('Y-m-d'),
-                'deleted_at' => $lodging->deleted_at
+        return Inertia::render('Invoices/Edit', [
+            'invoice' => [
+                'id' => $invoice->id,
+                'bill_id' => $invoice->bill_id,
+                'deleted_at' => $invoice->deleted_at,
             ],
-            'rooms' => Room::all(),
-            'renters' => Renter::all(),
+            'bills' => Bill::all(),
+
         ]);
     }
 
-    public function update(Lodging $lodging)
+    public function update(Invoice $invoice)
     {
-        $lodging->update(
+        $invoice->update(
             Request::validate([
-                'renter_id' => ['required', 'exists:renters,id'],
-                'room_id' => ['required', 'exists:rooms,id'],
-                'start_at' => ['required', 'date'],
-                'end_at' => ['required', 'date'],
+                'bill_id' => ['required', 'exists:bills,id']
             ])
         );
 
-        return Redirect::back()->with('success', 'Data Penginapan berhasil diperbarui.');
+        return Redirect::back()->with('success', 'Data Penagihan berhasil diperbarui.');
     }
 
-    public function destroy(Lodging $lodging)
+    public function destroy(Invoice $invoice)
     {
-        $lodging->delete();
+        $invoice->delete();
 
-        return Redirect::back()->with('success', 'Data Penginapan berhasil dihapus.');
+        return Redirect::back()->with('success', 'Data Penagihan berhasil dihapus.');
     }
 
-    public function restore(Lodging $lodging)
+    public function restore(Invoice $invoice)
     {
-        $lodging->restore();
+        $invoice->restore();
 
-        return Redirect::back()->with('success', 'Data Penginapan berhasil dipulihkan.');
+        return Redirect::back()->with('success', 'Data Penagihan berhasil dipulihkan.');
     }
 }
