@@ -26,7 +26,7 @@ const Invoices = () => {
           <table className="w-full whitespace-no-wrap">
             <thead>
               <tr className="font-bold text-left">
-                <th className="px-6 pt-5 pb-4">Id Penginapan</th>
+                <th className="px-6 pt-5 pb-4">ID Penginapan</th>
                 <th className="px-6 pt-5 pb-4">Nama Pengutang</th>
                 <th className="px-6 pt-5 pb-4">Item</th>
                 <th className="px-6 pt-5 pb-4">Tanggal Penagihan</th>

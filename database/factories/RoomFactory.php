@@ -6,7 +6,7 @@ use Faker\Generator as Faker;
 
 $factory->define(App\Room::class, function (Faker $faker) {
     return [
-        'number' => $faker->unique()->numberBetween(1,9),
+        'number' => $faker->unique()->numberBetween(1,2000),
         'length' => $faker->numberBetween(1,8),
         'width' => $faker->numberBetween(1,8),
         'facilities' => implode(',', $faker->randomElements(['AC','Bed','Bathroom','Furniture'], rand(1,4))),
