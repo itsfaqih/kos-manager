@@ -73,7 +73,7 @@ const Payments = () => {
                         href={route('payments.edit', id)}
                         className="flex items-center px-6 py-4 focus:text-indigo"
                       >
-                        {amount}
+                        Rp {amount}
                       </InertiaLink>
                     </td>
                     <td className="border-t">
