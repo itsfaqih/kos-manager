@@ -37,7 +37,7 @@ class BillsController extends Controller
                 'name' => ['required', 'string'],
                 'description' => ['required'],
                 'amount' => ['required', 'numeric'],
-                'per_month' => ['required', 'numeric'],
+                'per_month' => ['required', 'boolean'],
             ])
         );
 
@@ -68,7 +68,7 @@ class BillsController extends Controller
                 'name' => ['required', 'string'],
                 'description' => ['required'],
                 'amount' => ['required', 'numeric'],
-                'per_month' => ['required', 'numeric'],
+                'per_month' => ['required', 'boolean', 'in:1,0'],
             ])
         );
 

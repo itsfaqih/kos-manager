@@ -19,7 +19,7 @@ export default () => {
     name: bill.name || '',
     description: bill.description || '',
     amount: bill.amount || '',
-    per_month: bill.per_month || ''
+    per_month: bill.per_month ? '1' : '0' || '0'
   });
 
   function handleChange(e) {
@@ -114,15 +114,18 @@ export default () => {
                 value={values.amount}
                 onChange={handleChange}
               />
-              <TextInput
+              <SelectInput
                 className="w-full pb-8 pr-6 lg:w-1/2"
-                label="Biaya Per Bulan"
+                label="Per bulan"
                 name="per_month"
-                type="text"
                 errors={errors.per_month}
                 value={values.per_month}
                 onChange={handleChange}
-              />
+              >
+                <option value="" disabled>Pilih</option>
+                <option value="1">Ya</option>
+                <option value="0">Tidak</option>
+              </SelectInput>
             </div>
             <div className="flex items-center px-8 py-4 bg-gray-100 border-t border-gray-200">
               {!bill.deleted_at && (

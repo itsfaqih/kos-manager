@@ -32,7 +32,7 @@ const Bills = () => {
                 <th className="px-6 pt-5 pb-4">Nama Tagihan</th>
                 <th className="px-6 pt-5 pb-4">Deskripsi</th>
                 <th className="px-6 pt-5 pb-4">Jumlah</th>
-                <th className="px-6 pt-5 pb-4">Biaya Per Bulan</th>
+                <th className="px-6 pt-5 pb-4">Per Bulan</th>
               </tr>
             </thead>
             <tbody>
@@ -94,7 +94,7 @@ const Bills = () => {
                     href={route('bills.edit', id)}
                     className="flex items-center px-6 py-4 focus:text-indigo"
                   >
-                    {per_month}
+                    {per_month ? 'Ya' : 'Tidak'}
                   </InertiaLink>
                 </td>
                 <td className="w-px border-t">

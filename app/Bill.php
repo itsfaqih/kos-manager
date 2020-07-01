@@ -8,12 +8,10 @@ class Bill extends Model
 {
     use SoftDeletes;
 
-    /*
-    public function contacts()
-    {
-        return $this->hasMany(Contact::class);
-    }
-    */
+    protected $casts = [
+        'per_month' => 'boolean',
+    ];
+    
     public function logdging()
     {
         return $this->belongsTo(Lodging::class);
