@@ -10,7 +10,7 @@ export default ({ className }) => {
       <MainMenuItem text="Penginapan" link="lodgings.index" icon="office" />
       <MainMenuItem text="Tagihan" link="bills.index" icon="office" />
       <MainMenuItem text="Penagihan" link="invoices.index" icon="office" />
-      
+      <MainMenuItem text="Pembayaran" link="payments.index" icon="office" />
     </div>
   );
 };

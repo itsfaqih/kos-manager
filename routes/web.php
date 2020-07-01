@@ -83,6 +83,17 @@ Route::middleware('auth')->group(function () {
         Route::delete('{lodging}', 'LodgingsController@destroy')->name('destroy');
         Route::put('{lodging}/restore', 'LodgingsController@restore')->name('restore');
     });
+        
+    // Payments
+    Route::prefix('payments')->name('payments.')->group(function () {
+        Route::get('/', 'PaymentsController@index')->name('index')->middleware('remember');
+        Route::get('create', 'PaymentsController@create')->name('create');
+        Route::post('/', 'PaymentsController@store')->name('store');
+        Route::get('{payment}/edit', 'PaymentsController@edit')->name('edit');
+        Route::put('{payment}', 'PaymentsController@update')->name('update');
+        Route::delete('{payment}', 'PaymentsController@destroy')->name('destroy');
+        Route::put('{payment}/restore', 'PaymentsController@restore')->name('restore');
+    });
 });
 
 
