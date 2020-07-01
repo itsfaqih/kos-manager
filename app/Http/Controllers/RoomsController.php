@@ -30,11 +30,11 @@ class RoomsController extends Controller
     {
         Room::create(
             Request::validate([
-                'number' => ['nullable', 'required', 'unique:Rooms,number'],
-                'length' => ['nullable', 'required', 'min:1', 'max:8', 'numeric'],
-                'width' => ['nullable', 'required', 'min:1', 'max:8', 'numeric'],
-                'facilities' => ['nullable', 'required', 'in:AC,Bed,Bathroom,Furniture'],
-                'cost_per_month' => ['nullable', 'required', 'numeric'],
+                'number' => ['required', 'unique:Rooms,number'],
+                'length' => ['required', 'min:1', 'max:8', 'numeric'],
+                'width' => ['required', 'min:1', 'max:8', 'numeric'],
+                'facilities' => ['required', 'in:AC,Bed,Bathroom,Furniture'],
+                'cost_per_month' => ['required', 'numeric'],
             ])
         );
 
@@ -60,11 +60,11 @@ class RoomsController extends Controller
     {
         $room->update(
             Request::validate([
-                'number' => ['nullable', 'required', 'unique:Rooms,number'],
-                'length' => ['nullable', 'required', 'min:1', 'max:8', 'numeric'],
-                'width' => ['nullable', 'required', 'min:1', 'max:8', 'numeric'],
-                'facilities' => ['nullable', 'required', 'in:AC,Bed,Bathroom,Furniture'],
-                'cost_per_month' => ['nullable', 'required', 'numeric'],
+                'number' => ['required', 'unique:Rooms,number'],
+                'length' => ['required', 'min:1', 'max:8', 'numeric'],
+                'width' => ['required', 'min:1', 'max:8', 'numeric'],
+                'facilities' => ['required', 'in:AC,Bed,Bathroom,Furniture'],
+                'cost_per_month' => ['required', 'numeric'],
             ])
         );
 
