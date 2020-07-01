@@ -26,48 +26,37 @@ const Invoices = () => {
           <table className="w-full whitespace-no-wrap">
             <thead>
               <tr className="font-bold text-left">
-                <th className="px-6 pt-5 pb-4">Nama Penagihan</th>
-                <th className="px-6 pt-5 pb-4">Nomor Kamar</th>
-                <th className="px-6 pt-5 pb-4">Tanggal Buat</th>
+                <th className="px-6 pt-5 pb-4">ID Penginapan</th>
+                <th className="px-6 pt-5 pb-4">Nama Pengutang</th>
+                <th className="px-6 pt-5 pb-4">Item</th>
+                <th className="px-6 pt-5 pb-4">Tanggal Penagihan</th>
               </tr>
             </thead>
             <tbody>
               {data.map(
-                ({ id, bill_id, bill, room, deleted_at, created_at }) => {
+                ({ id, bill, deleted_at, created_at }) => {
                   return (
-                    <tr
-                      key={id}
-                      className="hover:bg-gray-100 focus-within:bg-gray-100"
-                    >
+                    <tr key={id} className="hover:bg-gray-100 focus-within:bg-gray-100">
                       <td className="border-t">
-                        <InertiaLink
-                          href={route('invoices.edit', id)}
-                          className="flex items-center px-6 py-4 focus:text-indigo-700"
-                        >
-                          {bill.name}
-                          {deleted_at && (
-                            <Icon
-                              name="trash"
-                              className="flex-shrink-0 w-3 h-3 ml-2 text-gray-400 fill-current"
-                            />
-                          )}
-                        </InertiaLink>
-                      </td>
-                      <td className="border-t">
-                        <InertiaLink
-                          tabIndex="-1"
-                          href={route('invoices.edit', id)}
-                          className="flex items-center px-6 py-4 focus:text-indigo"
-                        >
+                        <InertiaLink tabIndex="-1" href={route('invoices.edit', id)} className="flex items-center px-6 py-4 focus:text-indigo">
                           {bill.lodging_id}
                         </InertiaLink>
                       </td>
                       <td className="border-t">
-                        <InertiaLink
-                          tabIndex="-1"
-                          href={route('invoices.edit', id)}
-                          className="flex items-center px-6 py-4 focus:text-indigo"
-                        >
+                        <InertiaLink href={route('invoices.edit', id)} className="flex items-center px-6 py-4 focus:text-indigo-700">
+                          {bill.name}
+                          {deleted_at && (
+                            <Icon name="trash" className="flex-shrink-0 w-3 h-3 ml-2 text-gray-400 fill-current" />
+                          )}
+                        </InertiaLink>
+                      </td>
+                      <td className="border-t">
+                        <InertiaLink tabIndex="-1" href={route('invoices.edit', id)} className="flex items-center px-6 py-4 focus:text-indigo">
+                          {bill.lodging_id}
+                        </InertiaLink>
+                      </td>
+                      <td className="border-t">
+                        <InertiaLink tabIndex="-1" href={route('invoices.edit', id)} className="flex items-center px-6 py-4 focus:text-indigo">
                           {created_at}
                         </InertiaLink>
                       </td>
