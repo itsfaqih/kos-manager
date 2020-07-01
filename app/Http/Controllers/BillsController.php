@@ -36,7 +36,7 @@ class BillsController extends Controller
                 'lodging_id' => ['required', 'exists:lodgings,id'],
                 'name' => ['required', 'string'],
                 'description' => ['required'],
-                'amount' => ['required', 'numeric'],
+                'amount' => ['required', 'numeric', 'min:500'],
                 'per_month' => ['required', 'boolean'],
             ])
         );
@@ -67,8 +67,8 @@ class BillsController extends Controller
                 'lodging_id' => ['required', 'exists:lodgings,id'],
                 'name' => ['required', 'string'],
                 'description' => ['required'],
-                'amount' => ['required', 'numeric'],
-                'per_month' => ['required', 'boolean', 'in:1,0'],
+                'amount' => ['required', 'numeric', 'min:500'],
+                'per_month' => ['required', 'boolean'],
             ])
         );
 
