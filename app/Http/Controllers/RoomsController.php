@@ -30,11 +30,11 @@ class RoomsController extends Controller
     {
         Room::create(
             Request::validate([
-                'number' => ['nullable', 'required', 'between:1,20', 'numeric', 'unique:Rooms,number'],
+                'number' => ['nullable', 'required', 'unique:Rooms,number'],
                 'length' => ['nullable', 'required', 'min:1', 'max:8', 'numeric'],
                 'width' => ['nullable', 'required', 'min:1', 'max:8', 'numeric'],
-                'facilities' => ['nullable', 'required', 'max:25', 'in:AC,Bed,Bathroom,Furniture'],
-                'cost_per_month' => ['nullable', 'required', 'min:500000', 'max:10000000', 'numeric'],
+                'facilities' => ['nullable', 'required', 'in:AC,Bed,Bathroom,Furniture'],
+                'cost_per_month' => ['nullable', 'required', 'numeric'],
             ])
         );
 
