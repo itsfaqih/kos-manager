@@ -65,8 +65,6 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
         }
     }
 
-
-
     public function scopeFilter($query, array $filters)
     {
         $query->when($filters['search'] ?? null, function ($query, $search) {
