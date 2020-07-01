@@ -77,7 +77,6 @@ console.log(room);
                 className="w-full pb-8 pr-6 lg:w-1/2"
                 label="Nomor Kamar"
                 name="number" 
-                type="number"
                 errors={errors.number}
                 value={values.number}
                 onChange={handleChange}
