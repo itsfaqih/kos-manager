@@ -18,6 +18,7 @@ class CreatePaymentsTable extends Migration
             $table->foreignId('invoice_id')->constrained()->onDelete('cascade');
             $table->text('description');
             $table->integer('amount');
+            $table->softDeletes();
             $table->timestamps();
         });
     }
