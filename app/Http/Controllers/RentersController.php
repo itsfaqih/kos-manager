@@ -30,11 +30,11 @@ class RentersController extends Controller
     {
         Renter::create(
             Request::validate([
-                'nik' => ['required'],
-                'name' => ['required'],
-                'gender' => ['nullable'],
-                'phone_number' => ['nullable'],
-                'address' => ['nullable'],
+                'nik' => ['required', 'numeric'],
+                'name' => ['required', 'string'],
+                'gender' => ['required', 'in:Laki-Laki,Perempuan'],
+                'phone_number' => ['required', 'numeric'],
+                'address' => ['required'],
             ])
         );
 
@@ -60,11 +60,11 @@ class RentersController extends Controller
     {
         $renter->update(
             Request::validate([
-                'nik' => ['required'],
-                'name' => ['required'],
-                'gender' => ['nullable'],
-                'phone_number' => ['nullable'],
-                'address' => ['nullable'],
+                'nik' => ['required', 'numeric'],
+                'name' => ['required', 'string'],
+                'gender' => ['required', 'in:Laki-Laki,Perempuan'],
+                'phone_number' => ['required', 'numeric'],
+                'address' => ['required'],
             ])
         );
 

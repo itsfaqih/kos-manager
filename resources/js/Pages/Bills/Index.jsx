@@ -28,19 +28,34 @@ const Bills = () => {
           <table className="w-full whitespace-no-wrap">
             <thead>
               <tr className="font-bold text-left">
+                <th className="px-6 pt-5 pb-4">ID Penginapan</th>
                 <th className="px-6 pt-5 pb-4">Nama Tagihan</th>
                 <th className="px-6 pt-5 pb-4">Deskripsi</th>
                 <th className="px-6 pt-5 pb-4">Jumlah</th>
-                <th className="px-6 pt-5 pb-4">Per Bulan</th>
+                <th className="px-6 pt-5 pb-4">Biaya Per Bulan</th>
               </tr>
             </thead>
             <tbody>
-              {data.map(({ id, name, description, amount, per_month, deleted_at }) => {
+              {data.map(({ id, lodging_id, name, description, amount, per_month, deleted_at }) => {
                 return (
                   <tr
                 key={id}
                 className="hover:bg-gray-100 focus-within:bg-gray-100"
               >
+                <td className="border-t">
+                  <InertiaLink
+                    href={route('bills.edit', id)}
+                    className="flex items-center px-6 py-4 focus:text-indigo-700"
+                  >
+                    {lodging_id}
+                    {deleted_at && (
+                      <Icon
+                        name="trash"
+                        className="flex-shrink-0 w-3 h-3 ml-2 text-gray-400 fill-current"
+                      />
+                    )}
+                  </InertiaLink>
+                </td>
                 <td className="border-t">
                   <InertiaLink
                     href={route('bills.edit', id)}

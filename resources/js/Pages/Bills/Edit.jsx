@@ -76,7 +76,7 @@ export default () => {
           <div className="flex flex-wrap p-8 -mb-8 -mr-6">
               <SelectInput
                 className="w-full pb-8 pr-6 lg:w-1/2"
-                label="Penginapan"
+                label="ID Penginapan"
                 name="lodging_id"
                 errors={errors.lodging_id}
                 value={values.lodging_id}
@@ -116,7 +116,7 @@ export default () => {
               />
               <TextInput
                 className="w-full pb-8 pr-6 lg:w-1/2"
-                label="Per Bulan"
+                label="Biaya Per Bulan"
                 name="per_month"
                 type="text"
                 errors={errors.per_month}
