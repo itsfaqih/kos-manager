@@ -50,14 +50,14 @@ export default () => {
             <div className="flex flex-wrap p-8 -mb-8 -mr-6">
               <SelectInput
                 className="w-full pb-8 pr-6 lg:w-1/2"
-                label="Tagihan"
+                label="Tagihan "
                 name="bill_id"
                 errors={errors.bill_id}
                 value={values.bill_id}
                 onChange={handleChange}
               >
                 <option value="" disabled>
-                  Pilih Bill
+                  Pilih Tagihan
                 </option>
                 {bills.map((bill, index) => (
                   <option key={index} value={bill.id}>

@@ -24,9 +24,8 @@ class InvoicesController extends Controller
                         'id' => $invoice->id,
                         'bill_id' => $invoice->bill_id,
                         'bill' => $invoice->bill,
-
                         'deleted_at' => $invoice->deleted_at,
-                        'created_at' => $invoice->created_at,
+                        'created_at' => $invoice->created_at->format('d F Y'),
                     ];
                 }),
 
