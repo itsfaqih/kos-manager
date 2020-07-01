@@ -54,7 +54,7 @@ export default () => {
             <div className="flex flex-wrap p-8 -mb-8 -mr-6">
               <SelectInput
                 className="w-full pb-8 pr-6 lg:w-1/2"
-                label="Penginapan"
+                label="ID Penginapan"
                 name="lodging_id"
                 errors={errors.lodging_id}
                 value={values.lodging_id}
@@ -93,15 +93,18 @@ export default () => {
                 value={values.amount}
                 onChange={handleChange}
               />
-              <TextInput
+              <SelectInput
                 className="w-full pb-8 pr-6 lg:w-1/2"
                 label="Per bulan"
                 name="per_month"
-                type="text"
                 errors={errors.per_month}
                 value={values.per_month}
                 onChange={handleChange}
-              />
+              >
+                <option value="" disabled>Pilih</option>
+                <option value="1">Ya</option>
+                <option value="0">Tidak</option>
+              </SelectInput>
             </div>
             <div className="flex items-center justify-end px-8 py-4 bg-gray-100 border-t border-gray-200">
               <LoadingButton

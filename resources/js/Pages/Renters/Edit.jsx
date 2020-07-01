@@ -98,7 +98,7 @@ export default () => {
                 value={values.gender}
                 onChange={handleChange}
               >
-                <option value=""></option>
+                <option value="">Pilih Gender</option>
                 <option value="Laki-Laki">Laki-Laki</option>
                 <option value="Perempuan">Perempuan</option>
               </SelectInput>

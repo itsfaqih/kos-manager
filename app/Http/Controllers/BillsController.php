@@ -18,7 +18,7 @@ class BillsController extends Controller
             'bills' => Bill::orderBy('name')
                 ->filter(Request::only('search', 'trashed'))
                 ->paginate()
-                ->only('id', 'name', 'description', 'amount', 'per_month', 'deleted_at'),
+                ->only('id', 'lodging_id', 'name', 'description', 'amount', 'per_month', 'deleted_at'),
         ]);
     }
 
@@ -34,10 +34,10 @@ class BillsController extends Controller
         Bill::create(
             Request::validate([
                 'lodging_id' => ['required', 'exists:lodgings,id'],
-                'name' => ['required'],
+                'name' => ['required', 'string'],
                 'description' => ['required'],
-                'amount' => ['required'],
-                'per_month' => ['required'],
+                'amount' => ['required', 'numeric', 'min:500'],
+                'per_month' => ['required', 'boolean'],
             ])
         );
 
@@ -65,10 +65,10 @@ class BillsController extends Controller
         $bill->update(
             Request::validate([
                 'lodging_id' => ['required', 'exists:lodgings,id'],
-                'name' => ['required'],
+                'name' => ['required', 'string'],
                 'description' => ['required'],
-                'amount' => ['required'],
-                'per_month' => ['required'],
+                'amount' => ['required', 'numeric', 'min:500'],
+                'per_month' => ['required', 'boolean'],
             ])
         );
 
