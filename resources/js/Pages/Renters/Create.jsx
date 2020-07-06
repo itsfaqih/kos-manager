@@ -54,7 +54,7 @@ export default () => {
             <div className="flex flex-wrap p-8 -mb-8 -mr-6">
             <TextInput
                 className="w-full pb-8 pr-6 lg:w-1/2"
-                label="nik"
+                label="NIK"
                 name="nik"
                 errors={errors.nik}
                 value={values.nik}
@@ -62,7 +62,7 @@ export default () => {
               />
               <TextInput
                 className="w-full pb-8 pr-6 lg:w-1/2"
-                label="name"
+                label="Nama"
                 name="name"
                 errors={errors.name}
                 value={values.name}
@@ -70,19 +70,19 @@ export default () => {
               />
               <SelectInput
                 className="w-full pb-8 pr-6 lg:w-1/2"
-                label="gender"
+                label="Jenis Kelamin"
                 name="gender"
                 errors={errors.gender}
                 value={values.gender}
                 onChange={handleChange}
               >
-                <option value="">Pilih Gender</option>
+                <option value="">Pilih Jenis Kelamin</option>
                 <option value="Laki-Laki">Laki-Laki</option>
                 <option value="Perempuan">Perempuan</option>
               </SelectInput>
               <TextInput
                 className="w-full pb-8 pr-6 lg:w-1/2"
-                label="phone_number"
+                label="No Telepon"
                 name="phone_number"
                 type="text"
                 errors={errors.phone_number}
@@ -91,7 +91,7 @@ export default () => {
               />
               <TextInput
                 className="w-full pb-8 pr-6 lg:w-1/2"
-                label="Address"
+                label="Alamat"
                 name="address"
                 type="text"
                 errors={errors.address}
