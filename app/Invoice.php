@@ -16,13 +16,12 @@ class Invoice extends Model
 
     public function scopeFilter($query, array $filters)
     {
-        $query->when($filters['search'] ?? null, function ($query, $search) {
-            $query->whereHas('room', function ($query) use ($search) {
-                $query->where('number', 'like', "$search%");
-            });
-            $query->orWhereHas('renter', function ($query) use ($search) {
-                $query->where('name', 'like', "$search%");
-            });
+        $query->when($filters['search'] ?? null, function ($query, $search) {         
+            $query->whereHas('bill', function ($query) use ($search) {
+                $query->where('lodging_id', 'like', "$search%");
+                $query->orWhere('name', 'like', "$search%");
+            });    
+            
         })->when($filters['trashed'] ?? null, function ($query, $trashed) {
             if ($trashed === 'with') {
                 $query->withTrashed();
