@@ -9,6 +9,7 @@ import Pagination from '@/Shared/Pagination';
 const Renters = () => {
   const { renters } = usePage();
   const { links, data } = renters;
+
   return (
     <div>
       <Helmet title="Renters" />

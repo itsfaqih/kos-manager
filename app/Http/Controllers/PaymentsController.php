@@ -16,6 +16,7 @@ class PaymentsController extends Controller
         return Inertia::render('Payments/Index', [
             'filters' => Request::all('search', 'trashed'),
             'payments' => Payment::orderBy('id', 'desc')
+                ->where('amount', '>', '100000')
                 ->filter(Request::only('search', 'trashed'))
                 ->paginate()
                 ->transform(function ($payment) {

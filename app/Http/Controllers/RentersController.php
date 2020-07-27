@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Inertia\Inertia;
 use App\Renter;
+use App\Lodging;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Redirect;
@@ -52,6 +53,15 @@ class RentersController extends Controller
                 'phone_number' => $renter->phone_number,
                 'address' => $renter->address,
                 'deleted_at' => $renter->deleted_at,
+                'lodgings' => $renter->lodgings->transform(function ($lodging) {
+                    return [
+                        'id' => $lodging->id,
+                        'room' => $lodging->room,
+                        'start_at' => $lodging->start_at->format('d F Y'),
+                        'end_at' => $lodging->end_at->format('d F Y'),
+                        'deleted_at' => $lodging->deleted_at,
+                    ];
+                }),
             ],
         ]);
     }
