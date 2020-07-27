@@ -10,7 +10,7 @@ $factory->define(Bill::class, function (Faker $faker) {
         'lodging_id' => factory(Lodging::class),
         'name' => $faker->word,
         'description' => $faker->text($maxNbChars = 50),
-        'amount' => $faker->numberBetween(1,10),
+        'amount' => $faker->numberBetween(50000, 1500000),
         'per_month' => $faker->numberBetween(0,1),
     ];
 });

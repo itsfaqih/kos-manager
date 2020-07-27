@@ -19,6 +19,7 @@ class BillsController extends Controller
                 ->filter(Request::only('search', 'trashed'))
                 ->paginate()
                 ->only('id', 'lodging_id', 'name', 'description', 'amount', 'per_month', 'deleted_at'),
+
         ]);
     }
 
