@@ -28,13 +28,14 @@ const Invoices = () => {
               <tr className="font-bold text-left">
                 <th className="px-6 pt-5 pb-4">Nomor Kamar</th>
                 <th className="px-6 pt-5 pb-4">Nama Pengutang</th>
-                <th className="px-6 pt-5 pb-4">Item</th>
+                <th className="px-6 pt-5 pb-4">Item Tagihan</th>
                 <th className="px-6 pt-5 pb-4">Tanggal Penagihan</th>
+                <th className="px-6 pt-5 pb-4" colSpan="2">Status</th>
               </tr>
             </thead>
             <tbody>
               {data.map(
-                ({ id, room, renter, deleted_at, created_at }) => {
+                ({ id, room, renter, bill, deleted_at, created_at, paid }) => {
                   return (
                     <tr key={id} className="hover:bg-gray-100 focus-within:bg-gray-100">
                       <td className="border-t">
@@ -60,6 +61,23 @@ const Invoices = () => {
                           {created_at}
                         </InertiaLink>
                       </td>
+                      <td className="border-t">
+                        <InertiaLink tabIndex="-1" href={route('invoices.edit', id)} className="flex items-center px-6 py-4 focus:text-indigo">
+                          {paid ? 'Lunas' : 'Belum dibayar'}
+                        </InertiaLink>
+                      </td>
+                    <td className="w-px border-t">
+                      <InertiaLink
+                        tabIndex="-1"
+                        href={route('lodgings.edit', id)}
+                        className="flex items-center px-4"
+                      >
+                        <Icon
+                          name="cheveron-right"
+                          className="block w-6 h-6 text-gray-400 fill-current"
+                        />
+                      </InertiaLink>
+                    </td>
                     </tr>
                   );
                 }

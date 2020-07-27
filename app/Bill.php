@@ -12,7 +12,7 @@ class Bill extends Model
         'per_month' => 'boolean',
     ];
     
-    public function logdging()
+    public function lodging()
     {
         return $this->belongsTo(Lodging::class);
     }

@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Invoice extends Model
 {
     use SoftDeletes;
-    // protected $dates = ['start_at', 'end_at'];
 
     public function bill()
     {
@@ -17,6 +16,11 @@ class Invoice extends Model
     public function payment()
     {
         return $this->hasOne(Payment::class);
+    }
+
+    public function isPaid()
+    {
+        return $this->payment != null;
     }
 
     public function scopeFilter($query, array $filters)
