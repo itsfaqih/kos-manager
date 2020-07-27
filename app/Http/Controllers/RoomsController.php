@@ -63,7 +63,16 @@ class RoomsController extends Controller
                 'width' => $room->width,
                 'facilities' => $room->facilities,
                 'cost_per_month' => $room->cost_per_month,
-                'deleted_at' => $room->deleted_at
+                'deleted_at' => $room->deleted_at,
+                'lodgings' => $room->lodgings->transform(function ($lodging) {
+                    return [
+                        'id' => $lodging->id,
+                        'renter' => $lodging->renter,
+                        'start_at' => $lodging->start_at->format('d F Y'),
+                        'end_at' => $lodging->end_at->format('d F Y'),
+                        'deleted_at' => $lodging->deleted_at,
+                    ];
+                })
             ],
         ]);
     }

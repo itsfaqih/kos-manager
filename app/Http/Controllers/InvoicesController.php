@@ -22,10 +22,12 @@ class InvoicesController extends Controller
                 ->transform(function ($invoice) {
                     return [
                         'id' => $invoice->id,
-                        'bill_id' => $invoice->bill_id,
+                        'renter' => $invoice->bill->lodging->renter,
+                        'room' => $invoice->bill->lodging->room,
                         'bill' => $invoice->bill,
                         'deleted_at' => $invoice->deleted_at,
                         'created_at' => $invoice->created_at->format('d F Y'),
+                        'paid' => $invoice->isPaid()
                     ];
                 }),
 
