@@ -2,18 +2,17 @@
 
 namespace App;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Renter extends Model
 {
     use SoftDeletes;
 
-    /*
-    public function contacts()
+    public function lodgings()
     {
-        return $this->hasMany(Contact::class);
+        return $this->hasMany(Lodging::class);
     }
-    */
     
     public function scopeFilter($query, array $filters)
     {
@@ -25,6 +24,13 @@ class Renter extends Model
             } elseif ($trashed === 'only') {
                 $query->onlyTrashed();
             }
+        });
+    }
+
+    public function scopeActive($query)
+    {
+        $query->whereHas('lodgings', function ($query) {
+            $query->active();
         });
     }
 }

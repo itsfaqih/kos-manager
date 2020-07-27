@@ -8,9 +8,9 @@ class Room extends Model
 {
     use SoftDeletes;
 
-    public function contacts()
+    public function lodgings()
     {
-        return $this->hasMany(Contact::class);
+        return $this->hasMany(Lodging::class);
     }
 
     public function scopeFilter($query, array $filters)
@@ -23,6 +23,20 @@ class Room extends Model
             } elseif ($trashed === 'only') {
                 $query->onlyTrashed();
             }
+        });
+    }
+
+    public function scopeUsed($query)
+    {
+        $query->whereHas('lodgings', function ($query) {
+            $query->active();
+        });
+    }
+
+    public function scopeAvailable($query)
+    {
+        $query->whereDoesntHave('lodgings', function ($query) {
+            $query->active();
         });
     }
 }

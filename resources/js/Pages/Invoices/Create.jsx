@@ -10,7 +10,7 @@ import SelectInput from '@/Shared/SelectInput';
 export default () => {
   const { errors, bills } = usePage();
   const [sending, setSending] = useState(false);
-
+  
   const [values, setValues] = useState({
     bill_id: ''
   });

@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Lodging extends Model
@@ -35,5 +36,10 @@ class Lodging extends Model
                 $query->onlyTrashed();
             }
         });
+    }
+
+    public function scopeActive($query)
+    {
+        $query->whereDate('end_at', '>', Carbon::now());
     }
 }
