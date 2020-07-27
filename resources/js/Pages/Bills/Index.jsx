@@ -11,7 +11,7 @@ const Bills = () => {
   const { links, data } = bills;
   return (
     <div>
-      <Helmet title="Bills" />
+      <Helmet title="Tagihan" />
       <div>
         <h1 className="mb-8 text-3xl font-bold">Tagihan</h1>
         <div className="flex items-center justify-between mb-6">
@@ -28,7 +28,8 @@ const Bills = () => {
           <table className="w-full whitespace-no-wrap">
             <thead>
               <tr className="font-bold text-left">
-                <th className="px-6 pt-5 pb-4">ID Penginapan</th>
+                <th className="px-6 pt-5 pb-4">Nomor Kamar</th>
+                <th className="px-6 pt-5 pb-4">Nama Penyewa</th>
                 <th className="px-6 pt-5 pb-4">Nama Tagihan</th>
                 <th className="px-6 pt-5 pb-4">Deskripsi</th>
                 <th className="px-6 pt-5 pb-4">Jumlah</th>
@@ -36,7 +37,7 @@ const Bills = () => {
               </tr>
             </thead>
             <tbody>
-              {data.map(({ id, lodging_id, name, description, amount, per_month, deleted_at }) => {
+              {data.map(({ id, room, renter, name, description, amount, per_month, deleted_at }) => {
                 return (
                   <tr
                 key={id}
@@ -47,7 +48,21 @@ const Bills = () => {
                     href={route('bills.edit', id)}
                     className="flex items-center px-6 py-4 focus:text-indigo-700"
                   >
-                    {lodging_id}
+                    {room.number}
+                    {deleted_at && (
+                      <Icon
+                        name="trash"
+                        className="flex-shrink-0 w-3 h-3 ml-2 text-gray-400 fill-current"
+                      />
+                    )}
+                  </InertiaLink>
+                </td>
+                <td className="border-t">
+                  <InertiaLink
+                    href={route('bills.edit', id)}
+                    className="flex items-center px-6 py-4 focus:text-indigo-700"
+                  >
+                    {renter.name}
                     {deleted_at && (
                       <Icon
                         name="trash"
