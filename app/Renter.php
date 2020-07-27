@@ -9,8 +9,6 @@ class Renter extends Model
 {
     use SoftDeletes;
 
-    protected $dates = ['start_at', 'end_at'];
-
     public function lodgings()
     {
         return $this->hasMany(Lodging::class);

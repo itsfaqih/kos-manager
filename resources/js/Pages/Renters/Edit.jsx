@@ -11,7 +11,7 @@ import TrashedMessage from '@/Shared/TrashedMessage';
 import Icon from '@/Shared/Icon';
 
 export default () => {
-  const { errors, renter, rooms } = usePage();
+  const { errors, renter } = usePage();
   const [sending, setSending] = useState(false);
 
   const [values, setValues] = useState({
