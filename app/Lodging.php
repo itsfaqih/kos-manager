@@ -38,6 +38,19 @@ class Lodging extends Model
         return $this->hasManyDeep(Payment::class, [Bill::class, Invoice::class]);
     }
 
+    public function getStatus()
+    {
+        $now = Carbon::now();
+        if ($this->start_at->lessThan($now) && $this->end_at->greaterThan($now)) {
+            return 'Aktif';
+        } elseif ($this->start_at->greaterThan($now)) {
+            return 'Belum berjalan';
+        } else {
+            return 'Selesai';
+        }
+        
+    }
+
     public function scopeFilter($query, array $filters)
     {
         $query->when($filters['search'] ?? null, function ($query, $search) {
@@ -58,6 +71,7 @@ class Lodging extends Model
 
     public function scopeActive($query)
     {
-        $query->whereDate('end_at', '>', Carbon::now());
+        $now = Carbon::now();
+        $query->whereDate('start_at', '<', $now)->whereDate('end_at', '>', $now);
     }
 }

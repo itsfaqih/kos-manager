@@ -32,7 +32,7 @@ class Room extends Model
         });
     }
 
-    public function scopeUsed($query)
+    public function scopeOccupied($query)
     {
         $query->whereHas('lodgings', function ($query) {
             $query->active();

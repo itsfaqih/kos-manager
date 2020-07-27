@@ -16,7 +16,7 @@ class LodgingsController extends Controller
     {
         return Inertia::render('Lodgings/Index', [
             'filters' => Request::all('search', 'trashed'),
-            'lodgings' => Lodging::orderBy('id', 'desc')
+            'lodgings' => Lodging::orderBy('end_at', 'desc')
                 ->filter(Request::only('search', 'trashed'))
                 ->paginate()
                 ->transform(function ($lodging) {
@@ -27,6 +27,7 @@ class LodgingsController extends Controller
                         'start_at' => $lodging->start_at->format('d F Y'),
                         'end_at' => $lodging->end_at->format('d F Y'),
                         'deleted_at' => $lodging->deleted_at,
+                        'status' => $lodging->getStatus()
                     ];
                 }),
         ]);
