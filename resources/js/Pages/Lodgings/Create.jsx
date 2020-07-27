@@ -37,7 +37,7 @@ export default () => {
 
   return (
     <Layout>
-      <Helmet title="Create Lodging" />
+      <Helmet title="Tambah Data Penginapan" />
       <div>
         <h1 className="mb-8 text-3xl font-bold">
           <InertiaLink

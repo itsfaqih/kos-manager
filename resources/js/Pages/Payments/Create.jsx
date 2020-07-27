@@ -36,7 +36,7 @@ export default () => {
 
   return (
     <Layout>
-      <Helmet title="Create Payment" />
+      <Helmet title="Tambah Data Pembayaran" />
       <div>
         <h1 className="mb-8 text-3xl font-bold">
           <InertiaLink

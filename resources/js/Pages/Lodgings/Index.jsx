@@ -11,7 +11,7 @@ const Lodgings = () => {
   const { links, data } = lodgings;
   return (
     <div>
-      <Helmet title="Lodgings" />
+      <Helmet title="Penginapan" />
       <div>
         <h1 className="mb-8 text-3xl font-bold">Penginapan</h1>
         <div className="flex items-center justify-between mb-6">

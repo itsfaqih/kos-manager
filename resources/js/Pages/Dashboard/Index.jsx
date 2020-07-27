@@ -9,9 +9,9 @@ const Dashboard = () => {
   return (
     <div>
       <Helmet>
-        <title>Dashboard</title>
+        <title>Dasbor</title>
       </Helmet>
-      <h1 className="mb-8 text-3xl font-bold">Selamat datang kembali</h1>
+      <h1 className="mb-8 text-3xl font-bold">Dasbor</h1>
       <div className="flex flex-wrap -mx-3">
         <div className="w-full px-3 mb-4 lg:w-1/2 xl:w-1/3">
           <div className="flex w-full p-4 bg-white rounded-lg shadow">

@@ -5,8 +5,8 @@ import { TemplateOutline, KeyOutline, UserGroupOutline, ArchiveOutline, Currency
 export default ({ className }) => {
   return (
     <div className={className}>
-      <div className="mt-6 mb-4 text-sm font-semibold tracking-wide text-indigo-300 uppercase">Dashboard</div>
-      <MainMenuItem text="Dashboard" link="dashboard" icon={<TemplateOutline className="w-6 h-6 mr-4"/>} />
+      <div className="mt-6 mb-4 text-sm font-semibold tracking-wide text-indigo-300 uppercase">Dasbor</div>
+      <MainMenuItem text="Dasbor" link="dashboard" icon={<TemplateOutline className="w-6 h-6 mr-4"/>} />
       <div className="mt-6 mb-4 text-sm font-semibold tracking-wide text-indigo-300 uppercase">Master</div>
       <MainMenuItem text="Kamar" link="rooms.index" icon={<KeyOutline className="w-6 h-6 mr-4"/>} />
       <MainMenuItem text="Penyewa" link="renters.index" icon={<UserGroupOutline className="w-6 h-6 mr-4"/>} />
