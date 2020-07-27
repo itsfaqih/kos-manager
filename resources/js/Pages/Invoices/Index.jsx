@@ -26,7 +26,7 @@ const Invoices = () => {
           <table className="w-full whitespace-no-wrap">
             <thead>
               <tr className="font-bold text-left">
-                <th className="px-6 pt-5 pb-4">ID Penginapan</th>
+                <th className="px-6 pt-5 pb-4">Nomor Kamar</th>
                 <th className="px-6 pt-5 pb-4">Nama Pengutang</th>
                 <th className="px-6 pt-5 pb-4">Item</th>
                 <th className="px-6 pt-5 pb-4">Tanggal Penagihan</th>
@@ -34,17 +34,17 @@ const Invoices = () => {
             </thead>
             <tbody>
               {data.map(
-                ({ id, bill, deleted_at, created_at }) => {
+                ({ id, room, renter, deleted_at, created_at }) => {
                   return (
                     <tr key={id} className="hover:bg-gray-100 focus-within:bg-gray-100">
                       <td className="border-t">
                         <InertiaLink tabIndex="-1" href={route('invoices.edit', id)} className="flex items-center px-6 py-4 focus:text-indigo">
-                          {bill.lodging_id}
+                          {room.number}
                         </InertiaLink>
                       </td>
                       <td className="border-t">
                         <InertiaLink href={route('invoices.edit', id)} className="flex items-center px-6 py-4 focus:text-indigo-700">
-                          {bill.name}
+                          {renter.name}
                           {deleted_at && (
                             <Icon name="trash" className="flex-shrink-0 w-3 h-3 ml-2 text-gray-400 fill-current" />
                           )}
@@ -52,7 +52,7 @@ const Invoices = () => {
                       </td>
                       <td className="border-t">
                         <InertiaLink tabIndex="-1" href={route('invoices.edit', id)} className="flex items-center px-6 py-4 focus:text-indigo">
-                          {bill.lodging_id}
+                          {bill.name}
                         </InertiaLink>
                       </td>
                       <td className="border-t">

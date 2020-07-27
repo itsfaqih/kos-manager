@@ -133,65 +133,86 @@ console.log(room);
             </div>
           </form>
         </div>
-        {/* <h2 className="mt-12 text-2xl font-bold">rooms</h2>
+        <h2 className="mt-12 text-2xl font-bold">Riwayat Penginapan</h2>
         <div className="mt-6 overflow-x-auto bg-white rounded shadow">
           <table className="w-full whitespace-no-wrap">
             <thead>
               <tr className="font-bold text-left">
-                <th className="px-6 pt-5 pb-4">Room</th>
-                <th className="px-6 pt-5 pb-4">Large</th>
-                <th className="px-6 pt-5 pb-4">Facilities</th>
-                <th className="px-6 pt-5 pb-4">Cost Per Month</th>
+                <th className="px-6 pt-5 pb-4">Nama penyewa</th>
+                <th className="px-6 pt-5 pb-4">
+                  Tanggal mulai
+                </th>
+                <th className="px-6 pt-5 pb-4" colSpan="2">
+                  Tanggal selesai
+                </th>
               </tr>
             </thead>
             <tbody>
-              {room.rooms.map(
-                ({ id, number, large, facilities, cost_per_month, deleted_at }) => {
+              {room.lodgings.map(
+                ({ id, renter, start_at, end_at, deleted_at }) => {
                   return (
-                    <tr key={id} className="hover:bg-gray-100 focus-within:bg-gray-100">
+                    <tr
+                      key={id}
+                      className="hover:bg-gray-100 focus-within:bg-gray-100"
+                    >
                       <td className="border-t">
-                        <InertiaLink href={route('rooms.edit', id)} className="flex items-center px-6 py-4 focus:text-indigo">
-                          {number}
+                        <InertiaLink
+                          href={route('lodgings.edit', id)}
+                          className="flex items-center px-6 py-4 focus:text-indigo-700"
+                        >
+                          {renter.name}
                           {deleted_at && (
-                            <Icon name="trash" className="flex-shrink-0 w-3 h-3 ml-2 text-gray-400 fill-current"/>
+                            <Icon
+                              name="trash"
+                              className="flex-shrink-0 w-3 h-3 ml-2 text-gray-400 fill-current"
+                            />
                           )}
                         </InertiaLink>
                       </td>
                       <td className="border-t">
-                        <InertiaLink tabIndex="-1" href={route('rooms.edit', id)} className="flex items-center px-6 py-4 focus:text-indigo">
-                          {large}
+                        <InertiaLink
+                          tabIndex="-1"
+                          href={route('lodgings.edit', id)}
+                          className="flex items-center px-6 py-4 focus:text-indigo"
+                        >
+                          {start_at}
                         </InertiaLink>
                       </td>
                       <td className="border-t">
-                        <InertiaLink tabIndex="-1" href={route('rooms.edit', id)} className="flex items-center px-6 py-4 focus:text-indigo">
-                          {facilities}
+                        <InertiaLink
+                          tabIndex="-1"
+                          href={route('lodgings.edit', id)}
+                          className="flex items-center px-6 py-4 focus:text-indigo"
+                        >
+                          {end_at}
                         </InertiaLink>
                       </td>
-                      <td className="border-t">
-                        <InertiaLink tabIndex="-1" href={route('rooms.edit', id)} className="flex items-center px-6 py-4 focus:text-indigo">
-                          {cost_per_month}
-                        </InertiaLink>
-                      </td>
-                      
                       <td className="w-px border-t">
-                        <InertiaLink tabIndex="-1" href={route('rooms.edit', id)} className="flex items-center px-4">
-                          <Icon name="cheveron-right" className="block w-6 h-6 text-gray-400 fill-current"/>
+                        <InertiaLink
+                          tabIndex="-1"
+                          href={route('lodgings.edit', id)}
+                          className="flex items-center px-4"
+                        >
+                          <Icon
+                            name="cheveron-right"
+                            className="block w-6 h-6 text-gray-400 fill-current"
+                          />
                         </InertiaLink>
                       </td>
                     </tr>
                   );
                 }
               )}
-              {room.rooms.length === 0 && (
+              {room.lodgings.length === 0 && (
                 <tr>
                   <td className="px-6 py-4 border-t" colSpan="4">
-                    No rooms found.
+                    No lodgings found.
                   </td>
                 </tr>
               )}
             </tbody>
           </table>
-        </div> */}
+        </div>
       </div>
     </Layout>
   );
