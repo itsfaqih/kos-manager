@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Room extends Model
@@ -11,6 +12,11 @@ class Room extends Model
     public function lodgings()
     {
         return $this->hasMany(Lodging::class);
+    }
+
+    public function isAvailable()
+    {
+        return $this->lodgings->where('end_at', '>', Carbon::now())->count() == 0;
     }
 
     public function scopeFilter($query, array $filters)

@@ -5,6 +5,8 @@ import Layout from '@/Shared/Layout';
 import Icon from '@/Shared/Icon';
 import SearchFilter from '@/Shared/SearchFilter';
 import Pagination from '@/Shared/Pagination';
+import { tlFacility } from '@/utils';
+import { currency } from '@/utils';
 
 const Rooms = () => {
   const { rooms } = usePage();
@@ -26,10 +28,10 @@ const Rooms = () => {
             <thead>
               <tr className="font-bold text-left">
                 <th className="px-6 pt-5 pb-4">Nomor Kamar</th>
-                <th className="px-6 pt-5 pb-4">Panjang</th>
                 <th className="px-6 pt-5 pb-4">Luas</th>
                 <th className="px-6 pt-5 pb-4">Fasilitas</th>
                 <th className="px-6 pt-5 pb-4">Biaya Per Bulan</th>
+                <th className="px-6 pt-5 pb-4">Status</th>
               </tr>
             </thead>
             <tbody>
@@ -41,7 +43,8 @@ const Rooms = () => {
                   width,
                   facilities,
                   cost_per_month,
-                  deleted_at
+                  deleted_at,
+                  available
                 }) => {
                   return (
                     <tr
@@ -68,7 +71,7 @@ const Rooms = () => {
                           href={route('rooms.edit', id)}
                           className="flex items-center px-6 py-4 focus:text-indigo"
                         >
-                          {length}
+                          {width} x {length}
                         </InertiaLink>
                       </td>
                       <td className="border-t">
@@ -77,7 +80,11 @@ const Rooms = () => {
                           href={route('rooms.edit', id)}
                           className="flex items-center px-6 py-4 focus:text-indigo"
                         >
-                          {width}
+                          {facilities.split(',').map((facility, index, arr) =>
+                            <React.Fragment key={index}>
+                              {tlFacility(facility)}{arr.length - 1 != index && ', '}
+                            </React.Fragment>
+                          )}
                         </InertiaLink>
                       </td>
                       <td className="border-t">
@@ -86,7 +93,7 @@ const Rooms = () => {
                           href={route('rooms.edit', id)}
                           className="flex items-center px-6 py-4 focus:text-indigo"
                         >
-                          {facilities}
+                          {currency(cost_per_month)}
                         </InertiaLink>
                       </td>
                       <td className="border-t">
@@ -95,7 +102,7 @@ const Rooms = () => {
                           href={route('rooms.edit', id)}
                           className="flex items-center px-6 py-4 focus:text-indigo"
                         >
-                          {cost_per_month}
+                          {available ? 'Tersedia' : 'Sedang dipakai'}
                         </InertiaLink>
                       </td>
                       <td className="w-px border-t">

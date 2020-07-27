@@ -17,8 +17,20 @@ class RoomsController extends Controller
             'rooms' => Room::orderBy('number')
                 ->filter(Request::only('search', 'trashed'))
                 ->paginate()
-                ->only('id', 'number', 'length', 'width', 'facilities', 'cost_per_month', 'created_at', 'deleted_at'),
-        ]);
+                ->transform(function ($room) {
+                    return [
+                        'id' => $room->id,
+                        'number' => $room->number, 
+                        'length' => $room->length, 
+                        'width' => $room->width, 
+                        'facilities' => $room->facilities, 
+                        'cost_per_month' => $room->cost_per_mont, 
+                        'created_at' => $room->created_at, 
+                        'deleted_at' => $room->deleted_at,
+                        'available' => $room->isAvailable()
+                    ];
+                })
+            ]);
     }
 
     public function create()

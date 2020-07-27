@@ -23,3 +23,27 @@ export function toFormData(values = {}, method = 'POST') {
 
   return formData;
 }
+
+export function tlFacility(facility) {
+  switch (facility) {
+    case 'AC':
+      return 'AC';
+    case 'Bed':
+      return 'Kasur';
+    case 'Bathroom':
+      return 'KM dalam';
+    case 'Furniture':
+      return 'Perabotan';
+    default:
+      return null;
+  }
+}
+
+export function currency(number, locale = 'id-ID', currency = 'IDR') {
+  return new Intl.NumberFormat(locale, {
+    style: 'currency',
+    currency: currency,
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 0
+  }).format(number);
+}
