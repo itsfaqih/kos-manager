@@ -24,7 +24,7 @@ class RoomsController extends Controller
                         'length' => $room->length, 
                         'width' => $room->width, 
                         'facilities' => $room->facilities, 
-                        'cost_per_month' => $room->cost_per_mont, 
+                        'cost_per_month' => $room->cost_per_month, 
                         'created_at' => $room->created_at, 
                         'deleted_at' => $room->deleted_at,
                         'available' => $room->isAvailable()
