@@ -4,10 +4,13 @@ namespace App;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Staudenmeir\EloquentHasManyDeep\HasRelationships;
 
 class Lodging extends Model
 {
     use SoftDeletes;
+    use HasRelationships;
+    
     protected $dates = ['start_at', 'end_at'];
 
     public function renter()
@@ -18,6 +21,21 @@ class Lodging extends Model
     public function room()
     {
         return $this->belongsTo(Room::class);
+    }
+
+    public function bills()
+    {
+        return $this->hasMany(Bill::class);
+    }
+
+    public function invoices()
+    {
+        return $this->hasManyThrough(Invoice::class, Bill::class);
+    }
+
+    public function payments()
+    {
+        return $this->hasManyDeep(Payment::class, [Bill::class, Invoice::class]);
     }
 
     public function scopeFilter($query, array $filters)

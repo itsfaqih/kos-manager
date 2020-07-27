@@ -14,6 +14,11 @@ class Invoice extends Model
         return $this->belongsTo(Bill::class);
     }
 
+    public function payment()
+    {
+        return $this->hasOne(Payment::class);
+    }
+
     public function scopeFilter($query, array $filters)
     {
         $query->when($filters['search'] ?? null, function ($query, $search) {         

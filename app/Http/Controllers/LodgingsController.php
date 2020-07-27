@@ -29,7 +29,6 @@ class LodgingsController extends Controller
                         'deleted_at' => $lodging->deleted_at,
                     ];
                 }),
-                // ->only('id', 'room_id', 'renter_id', 'start_at', 'end_at', 'deleted_at')
         ]);
     }
 
@@ -64,7 +63,17 @@ class LodgingsController extends Controller
                 'room' => $lodging->room,
                 'start_at' => $lodging->start_at->format('Y-m-d'),
                 'end_at' => $lodging->end_at->format('Y-m-d'),
-                'deleted_at' => $lodging->deleted_at
+                'deleted_at' => $lodging->deleted_at,
+                'payments' => $lodging->payments->transform(function ($payment) {
+                    return [
+                        'id' => $payment->id,
+                        'item' => $payment->invoice->bill->name,
+                        'amount' => $payment->amount,
+                        'issued_at' => $payment->invoice->created_at->format('d F Y'),
+                        'created_at' => $payment->created_at->format('d F Y'),
+                        'deleted_at' => $payment->deleted_at
+                    ];
+                })
             ],
             'rooms' => Room::all(),
             'renters' => Renter::all(),

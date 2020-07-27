@@ -16,6 +16,11 @@ class Bill extends Model
     {
         return $this->belongsTo(Lodging::class);
     }
+
+    public function invoice()
+    {
+        return $this->hasOne(Invoice::class);
+    }
     
     public function scopeFilter($query, array $filters)
     {

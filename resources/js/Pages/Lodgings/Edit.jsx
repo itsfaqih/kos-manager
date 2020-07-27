@@ -9,6 +9,7 @@ import TextInput from '@/Shared/TextInput';
 import SelectInput from '@/Shared/SelectInput';
 import TrashedMessage from '@/Shared/TrashedMessage';
 import Icon from '@/Shared/Icon';
+import { currency } from '@/utils';
 
 export default () => {
   const { errors, lodging, renters, rooms } = usePage();
@@ -73,7 +74,7 @@ export default () => {
         <div className="max-w-3xl overflow-hidden bg-white rounded shadow">
           <form onSubmit={handleSubmit}>
             <div className="flex flex-wrap p-8 -mb-8 -mr-6">
-            <SelectInput
+              <SelectInput
                 className="w-full pb-8 pr-6 lg:w-1/2"
                 label="Penyewa"
                 name="renter_id"
@@ -82,11 +83,11 @@ export default () => {
                 onChange={handleChange}
               >
                 <option value="" disabled>Pilih Penyewa</option>
-                  {
-                    renters.map((renter, index) => (
-                      <option key={index} value={renter.id}>{renter.name}</option>
-                    ))
-                  }
+                {
+                  renters.map((renter, index) => (
+                    <option key={index} value={renter.id}>{renter.name}</option>
+                  ))
+                }
               </SelectInput>
               <SelectInput
                 className="w-full pb-8 pr-6 lg:w-1/2"
@@ -97,15 +98,15 @@ export default () => {
                 onChange={handleChange}
               >
                 <option value="" disabled>Pilih Kamar</option>
-                  {
-                    rooms.map((room, index) => (
-                      <option key={index} value={room.id}>{room.number}</option>
-                    ))
-                  }
+                {
+                  rooms.map((room, index) => (
+                    <option key={index} value={room.id}>{room.number}</option>
+                  ))
+                }
               </SelectInput>
               <TextInput
                 className="w-full pb-8 pr-6 lg:w-1/2"
-                label="Start at"
+                label="Mulai sewa"
                 name="start_at"
                 type="date"
                 errors={errors.start_at}
@@ -114,7 +115,7 @@ export default () => {
               />
               <TextInput
                 className="w-full pb-8 pr-6 lg:w-1/2"
-                label="End at"
+                label="Selesai sewa"
                 name="end_at"
                 type="date"
                 errors={errors.end_at}
@@ -138,21 +139,22 @@ export default () => {
             </div>
           </form>
         </div>
-        {/* <h2 className="mt-12 text-2xl font-bold">Contacts</h2>
+        <h2 className="mt-12 text-2xl font-bold">Riwayat Pembayaran</h2>
         <div className="mt-6 overflow-x-auto bg-white rounded shadow">
           <table className="w-full whitespace-no-wrap">
             <thead>
               <tr className="font-bold text-left">
-                <th className="px-6 pt-5 pb-4">Name</th>
-                <th className="px-6 pt-5 pb-4">City</th>
+                <th className="px-6 pt-5 pb-4">Item Tagihan</th>
+                <th className="px-6 pt-5 pb-4">Jumlah</th>
+                <th className="px-6 pt-5 pb-4">Tanggal Penagihan</th>
                 <th className="px-6 pt-5 pb-4" colSpan="2">
-                  Phone
+                  Tanggal Pembayaran
                 </th>
               </tr>
             </thead>
             <tbody>
-              {lodging.contacts.map(
-                ({ id, name, phone, city, deleted_at }) => {
+              {lodging.payments.map(
+                ({ id, item, amount, issued_at, created_at, deleted_at }) => {
                   return (
                     <tr
                       key={id}
@@ -160,10 +162,10 @@ export default () => {
                     >
                       <td className="border-t">
                         <InertiaLink
-                          href={route('contacts.edit', id)}
+                          href={route('payments.edit', id)}
                           className="flex items-center px-6 py-4 focus:text-indigo"
                         >
-                          {name}
+                          {item}
                           {deleted_at && (
                             <Icon
                               name="trash"
@@ -175,25 +177,34 @@ export default () => {
                       <td className="border-t">
                         <InertiaLink
                           tabIndex="-1"
-                          href={route('contacts.edit', id)}
+                          href={route('payments.edit', id)}
                           className="flex items-center px-6 py-4 focus:text-indigo"
                         >
-                          {city}
+                          {currency(amount)}
                         </InertiaLink>
                       </td>
                       <td className="border-t">
                         <InertiaLink
                           tabIndex="-1"
-                          href={route('contacts.edit', id)}
+                          href={route('payments.edit', id)}
                           className="flex items-center px-6 py-4 focus:text-indigo"
                         >
-                          {phone}
+                          {issued_at}
+                        </InertiaLink>
+                      </td>
+                      <td className="border-t">
+                        <InertiaLink
+                          tabIndex="-1"
+                          href={route('payments.edit', id)}
+                          className="flex items-center px-6 py-4 focus:text-indigo"
+                        >
+                          {created_at}
                         </InertiaLink>
                       </td>
                       <td className="w-px border-t">
                         <InertiaLink
                           tabIndex="-1"
-                          href={route('contacts.edit', id)}
+                          href={route('payments.edit', id)}
                           className="flex items-center px-4"
                         >
                           <Icon
@@ -206,16 +217,16 @@ export default () => {
                   );
                 }
               )}
-              {lodging.contacts.length === 0 && (
+              {lodging.payments.length === 0 && (
                 <tr>
                   <td className="px-6 py-4 border-t" colSpan="4">
-                    No contacts found.
+                    Belum ada data pembayaran
                   </td>
                 </tr>
               )}
             </tbody>
           </table>
-        </div> */}
+        </div>
       </div>
     </Layout>
   );

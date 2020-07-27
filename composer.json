@@ -18,6 +18,7 @@
     "laravel/ui": "^2.0",
     "league/glide": "2.0.x-dev",
     "reinink/remember-query-strings": "^0.1.0",
+    "staudenmeir/eloquent-has-many-deep": "^1.7",
     "tightenco/ziggy": "^0.8.0"
   },
   "autoload": {
