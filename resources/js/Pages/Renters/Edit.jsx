@@ -138,7 +138,7 @@ export default () => {
           </form>
         </div>
         <h2 className="mt-12 text-2xl font-bold">Riwayat Penginapan</h2>
-        <div className="overflow-x-auto bg-white rounded shadow">
+        <div className="mt-6 overflow-x-auto bg-white rounded shadow">
           <table className="w-full whitespace-no-wrap">
             <thead>
               <tr className="font-bold text-left">

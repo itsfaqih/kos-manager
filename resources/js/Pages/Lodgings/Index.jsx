@@ -11,7 +11,7 @@ const Lodgings = () => {
   const { links, data } = lodgings;
   return (
     <div>
-      <Helmet title="Lodgings" />
+      <Helmet title="Penginapan" />
       <div>
         <h1 className="mb-8 text-3xl font-bold">Penginapan</h1>
         <div className="flex items-center justify-between mb-6">
@@ -33,13 +33,16 @@ const Lodgings = () => {
                 <th className="px-6 pt-5 pb-4">
                   Tanggal mulai
                 </th>
-                <th className="px-6 pt-5 pb-4" colSpan="2">
+                <th className="px-6 pt-5 pb-4">
                   Tanggal selesai
+                </th>
+                <th className="px-6 pt-5 pb-4" colSpan="2">
+                  Status
                 </th>
               </tr>
             </thead>
             <tbody>
-              {data.map(({ id, room, renter, start_at, end_at, deleted_at }) => {
+              {data.map(({ id, room, renter, start_at, end_at, deleted_at, status }) => {
                 return (
                   <tr
                     key={id}
@@ -84,6 +87,15 @@ const Lodgings = () => {
                         className="flex items-center px-6 py-4 focus:text-indigo"
                       >
                         {end_at}
+                      </InertiaLink>
+                    </td>
+                    <td className="border-t">
+                      <InertiaLink
+                        tabIndex="-1"
+                        href={route('lodgings.edit', id)}
+                        className="flex items-center px-6 py-4 focus:text-indigo"
+                      >
+                        {status}
                       </InertiaLink>
                     </td>
                     <td className="w-px border-t">

@@ -5,13 +5,14 @@ import Layout from '@/Shared/Layout';
 import Icon from '@/Shared/Icon';
 import SearchFilter from '@/Shared/SearchFilter';
 import Pagination from '@/Shared/Pagination';
+import { currency } from '@/utils';
 
 const Payments = () => {
   const { payments } = usePage();
   const { links, data } = payments;
   return (
     <div>
-      <Helmet title="Payments" />
+      <Helmet title="Pembayaran" />
       <div>
         <h1 className="mb-8 text-3xl font-bold">Pembayaran</h1>
         <div className="flex items-center justify-between mb-6">
@@ -28,8 +29,8 @@ const Payments = () => {
           <table className="w-full whitespace-no-wrap">
             <thead>
               <tr className="font-bold text-left">
-                <th className="px-6 pt-5 pb-4">ID Invoice</th>
-                <th className="px-6 pt-5 pb-4">Keterangan</th>
+                <th className="px-6 pt-5 pb-4">Nomor Kamar</th>
+                <th className="px-6 pt-5 pb-4">Nama Penyewa</th>
                 <th className="px-6 pt-5 pb-4">Jumlah</th>
                 <th className="px-6 pt-5 pb-4">Tanggal penagihan</th>
                 <th className="px-6 pt-5 pb-4" colSpan="2">
@@ -38,7 +39,7 @@ const Payments = () => {
               </tr>
             </thead>
             <tbody>
-              {data.map(({ id, description, amount, invoice_id, invoice_date, created_at, deleted_at }) => {
+              {data.map(({ id, amount, room, renter, invoice_date, created_at, deleted_at }) => {
                 return (
                   <tr
                     key={id}
@@ -46,16 +47,11 @@ const Payments = () => {
                   >
                     <td className="border-t">
                       <InertiaLink
+                        tabIndex="-1"
                         href={route('payments.edit', id)}
-                        className="flex items-center px-6 py-4 focus:text-indigo-700"
+                        className="flex items-center px-6 py-4 focus:text-indigo"
                       >
-                        {invoice_id}
-                        {deleted_at && (
-                          <Icon
-                            name="trash"
-                            className="flex-shrink-0 w-3 h-3 ml-2 text-gray-400 fill-current"
-                          />
-                        )}
+                        {room.number}
                       </InertiaLink>
                     </td>
                     <td className="border-t">
@@ -64,7 +60,7 @@ const Payments = () => {
                         href={route('payments.edit', id)}
                         className="flex items-center px-6 py-4 focus:text-indigo"
                       >
-                        {description}
+                        {renter.name}
                       </InertiaLink>
                     </td>
                     <td className="border-t">
@@ -73,7 +69,7 @@ const Payments = () => {
                         href={route('payments.edit', id)}
                         className="flex items-center px-6 py-4 focus:text-indigo"
                       >
-                        Rp {amount}
+                        {currency(amount)}
                       </InertiaLink>
                     </td>
                     <td className="border-t">

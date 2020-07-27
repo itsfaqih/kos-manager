@@ -21,15 +21,14 @@ class PaymentsController extends Controller
                 ->transform(function ($payment) {
                     return [
                         'id' => $payment->id,
-                        'description' => $payment->description,
                         'amount' => $payment->amount,
-                        'invoice_id' => $payment->invoice_id,
+                        'room' => $payment->invoice->bill->lodging->room,
+                        'renter' => $payment->invoice->bill->lodging->renter,
                         'invoice_date' => $payment->invoice->created_at->format('d F Y'),
                         'created_at' => $payment->created_at->format('d F Y'),
                         'deleted_at' => $payment->deleted_at,
                     ];
                 }),
-                // ->only('id', 'room_id', 'renter_id', 'start_at', 'end_at', 'deleted_at')
         ]);
     }
 
