@@ -12,7 +12,7 @@ const Renters = () => {
 
   return (
     <div>
-      <Helmet title="Renters" />
+      <Helmet title="Penyewa" />
       <div>
         <h1 className="mb-8 text-3xl font-bold">Penyewa</h1>
         <div className="flex items-center justify-between mb-6">

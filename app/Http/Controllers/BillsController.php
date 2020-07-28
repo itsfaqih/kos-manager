@@ -18,7 +18,19 @@ class BillsController extends Controller
             'bills' => Bill::orderBy('name')
                 ->filter(Request::only('search', 'trashed'))
                 ->paginate()
-                ->only('id', 'lodging_id', 'name', 'description', 'amount', 'per_month', 'deleted_at'),
+                ->transform(function ($bill) {
+                    return [
+                        'id' => $bill->id,
+                        'room' => $bill->lodging->room,
+                        'renter' => $bill->lodging->renter,
+                        'name' => $bill->name,
+                        'description' => $bill->description,
+                        'amount' => $bill->amount,
+                        'per_month' => $bill->per_month,
+                        'deleted_at' => $bill->deleted_at,
+                    ];
+                }),
+                // ->only('id', 'lodging_id', 'name', 'description', 'amount', 'per_month', 'deleted_at'),
 
         ]);
     }
